@@ -58,9 +58,19 @@ function Login() {
 
     const data = await response.json();
 
-    if (data.message) {
-      setMessage(data.message);
+    if (response.status === 401) {
+      setMessage("Email ou mot de passe incorret");
+      return;
     }
+
+    if (response.status !== 200) {
+      setMessage("Une erreur s'est produite");
+      return;
+    }
+
+    const token = data.token;
+    setMessage("Vous êtes connecté");
+    console.log(token);
   };
 
   return (
@@ -92,7 +102,7 @@ function Login() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Addresse E-Mail"
               name="email"
               autoComplete="email"
               autoFocus
@@ -104,7 +114,7 @@ function Login() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Mot de passe"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -113,7 +123,7 @@ function Login() {
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label="Se souvenir de moi"
             />
             <Button
               type="submit"

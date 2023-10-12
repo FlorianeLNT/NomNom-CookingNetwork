@@ -23,7 +23,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Nom Nom Cooking Network
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -58,9 +58,33 @@ function Login() {
 
     const data = await response.json();
 
-    if (data.message) {
-      setMessage(data.message);
+    if (response.status === 401) {
+      setMessage("Email ou mot de passe incorret");
+      return;
     }
+
+    if (response.status !== 200) {
+      setMessage("Une erreur s'est produite");
+      return;
+    }
+
+    if (response.status === 200) {
+      const token = data.token;
+      localStorage.setItem("email", email);
+      localStorage.setItem("password", password);
+      localStorage.setItem("token", token);
+      setMessage("Vous êtes connecté");
+    }
+
+    React.useEffect(() => {
+      const storedEmail = localStorage.getItem("email");
+      const storedPassword = localStorage.getItem("password");
+
+      if (storedEmail && storedPassword) {
+        setEmail(storedEmail);
+        setPassword(storedPassword);
+      }
+    }, []);
   };
 
   return (
@@ -79,7 +103,7 @@ function Login() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Connexion
           </Typography>
           <Box
             component="form"
@@ -92,7 +116,7 @@ function Login() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Addresse E-Mail"
               name="email"
               autoComplete="email"
               autoFocus
@@ -104,7 +128,7 @@ function Login() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="Mot de passe"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -113,7 +137,7 @@ function Login() {
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label="Se souvenir de moi"
             />
             <Button
               type="submit"
@@ -121,17 +145,17 @@ function Login() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Se connecter
             </Button>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  Mot de passe oublié
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  {"Créez un compte"}
                 </Link>
               </Grid>
             </Grid>

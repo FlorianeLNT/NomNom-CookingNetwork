@@ -6,6 +6,10 @@ import { useEffect, useState } from "react";
 import Login from "../Login/Login";
 
 function Home() {
-  return <></>;
+  return (
+    <>
+      <Login />
+    </>
+  );
 }
 export default Home;

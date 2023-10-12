@@ -6,7 +6,6 @@ import Login from "./Component/Login/Login";
 import NavBar from "./Component/NavBar/NavBar";
 import SignUp from "./Component/Signup/Signup";
 
-// Commentaire pour tester
 function App() {
   const router = createBrowserRouter([
     {

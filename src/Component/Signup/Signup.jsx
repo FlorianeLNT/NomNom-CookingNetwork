@@ -23,7 +23,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Nom Nom Cooking Network
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -38,7 +38,6 @@ const defaultTheme = createTheme();
 function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [comfirmPassword, setComfirmPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [message, setMessage] = useState("");
@@ -54,8 +53,8 @@ function SignUp() {
       body: JSON.stringify({
         email: email,
         password: password,
-        firstName: firstName,
-        lastName: lastName,
+        firstname: firstName,
+        lastname: lastName,
       }),
     };
     const response = await fetch(
@@ -72,11 +71,6 @@ function SignUp() {
     if (data.message) {
       setMessage(data.message);
     }
-
-    // if (password != comfirmPassword) {
-    //   setMessage("Veuillez saisir des mots de passe identiques");
-    //   return;
-    // }
   };
 
   return (
@@ -95,7 +89,7 @@ function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Créer le compte
           </Typography>
           <Box
             component="form"
@@ -154,19 +148,6 @@ function SignUp() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
-              {/* <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="comfirmPassword"
-                  label="Comfirmer mot de passe"
-                  type="Password"
-                  id="comfirmPassword"
-                  autoComplete="new-password"
-                  value={comfirmPassword}
-                  onChange={(e) => setComfirmPassword(e.target.value)}
-                />
-              </Grid> */}
               <Grid item xs={12}>
                 <FormControlLabel
                   control={
@@ -186,8 +167,8 @@ function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
+                <Link href="/login" variant="body2">
+                  Vous avez déjà un compte ? Connectez-vous
                 </Link>
               </Grid>
             </Grid>

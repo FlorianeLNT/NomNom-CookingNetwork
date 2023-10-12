@@ -19,8 +19,6 @@ function App() {
   ]);
   return (
     <div>
-      <NavBar />
-      <SignUp />
       <RouterProvider router={router} />
     </div>
   );

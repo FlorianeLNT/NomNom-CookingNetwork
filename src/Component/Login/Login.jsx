@@ -70,21 +70,9 @@ function Login() {
 
     if (response.status === 200) {
       const token = data.token;
-      localStorage.setItem("email", email);
-      localStorage.setItem("password", password);
       localStorage.setItem("token", token);
       setMessage("Vous êtes connecté");
     }
-
-    React.useEffect(() => {
-      const storedEmail = localStorage.getItem("email");
-      const storedPassword = localStorage.getItem("password");
-
-      if (storedEmail && storedPassword) {
-        setEmail(storedEmail);
-        setPassword(storedPassword);
-      }
-    }, []);
   };
 
   return (
@@ -154,7 +142,7 @@ function Login() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/register" variant="body2">
                   {"Créez un compte"}
                 </Link>
               </Grid>

@@ -12,7 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-// test
+
 function Copyright(props) {
   return (
     <Typography
@@ -33,7 +33,23 @@ function Copyright(props) {
 
 const defaultTheme = createTheme();
 
-function LogIn() {
+function Login() {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
+  };
+  const response = fetch(
+    "https://social-network-api.osc-fr1.scalingo.io/nom-nom",
+    options
+  );
+  const data = response.json();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -119,4 +135,4 @@ function LogIn() {
   );
 }
 
-export default LogIn();
+export default Login;

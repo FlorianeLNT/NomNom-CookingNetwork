@@ -1,15 +1,11 @@
 import "./Home.css";
-import Menu from "../Menu/Menu";
+import NavBar from "../NavBar/NavBar";
 import InputPost from "../InputPost/InputPost";
 import PostedCard from "../PostedCard/PostedCard";
-import SignUp from "../Signup/Signup";
 import { useEffect, useState } from "react";
+import Login from "../Login/Login";
 
 function Home() {
-  return (
-    <>
-      <SignUp />
-    </>
-  );
+  return <></>;
 }
 export default Home;

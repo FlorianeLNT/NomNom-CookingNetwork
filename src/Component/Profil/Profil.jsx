@@ -1,8 +1,13 @@
 import "./Profil.css";
 import Button from "@mui/material/Button";
 import EditProfil from "../EditProfil/EditProfil";
+import NavBar from "../NavBar/NavBar";
 
 function Profil(props) {
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
   async function userData() {
     const options = {
       method: "GET",
@@ -10,10 +15,9 @@ function Profil(props) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        email: email,
         firstname: firstName,
         lastname: lastName,
-        age: age,
-        occupation: occupation,
       }),
     };
     const response = await fetch(
@@ -25,6 +29,7 @@ function Profil(props) {
   }
   return (
     <>
+      <NavBar />
       <div className="my-profile">
         <div className="profil-info">
           <h1>

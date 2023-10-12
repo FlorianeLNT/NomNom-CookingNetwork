@@ -34,6 +34,22 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 function Login() {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
+  };
+  const response = fetch(
+    "https://social-network-api.osc-fr1.scalingo.io/nom-nom",
+    options
+  );
+  const data = response.json();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);

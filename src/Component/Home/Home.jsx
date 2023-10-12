@@ -1,10 +1,14 @@
 import "./Home.css";
 import Menu from "../Menu/Menu";
 import InputPost from "../InputPost/InputPost";
-import PostedCard from "../PostedCard/PostedCard";
+import Card from "../Card/Card";
 import { useEffect, useState } from "react";
 
 function Home() {
-  return <></>;
+  return (
+    <>
+      <Card />
+    </>
+  );
 }
 export default Home;

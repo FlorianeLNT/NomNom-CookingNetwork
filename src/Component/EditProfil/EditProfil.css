@@ -1,0 +1,9 @@
+.button-save {
+  background-color: #f4cb9e !important;
+  color: #371f10 !important;
+}
+
+.inputEdit {
+  display: flex !important;
+  flex-direction: column !important;
+}

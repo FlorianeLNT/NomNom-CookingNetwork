@@ -19,6 +19,7 @@ function EditProfil() {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: "bearer" + token,
       },
       body: JSON.stringify({
         firstname: firstName,
@@ -100,8 +101,8 @@ function EditProfil() {
           onChange={(e) => setOccupation(e.target.value)}
         />
       </div>
-      <div className="button-save">
-        <Button variant="contained" onClick={edit}>
+      <div>
+        <Button className="button-save" variant="contained" onClick={edit}>
           Enregistrer
         </Button>
       </div>

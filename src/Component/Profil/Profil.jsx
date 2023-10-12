@@ -26,17 +26,19 @@ function Profil(props) {
   return (
     <>
       <div className="my-profile">
-        <h1>
-          Mon Profil :{" "}
-          <Button className="button-modifier" variant="contained">
-            Modifier
-          </Button>
-        </h1>
-        <p>Prénom : {props.firstName}</p>
-        <p>Nom : {props.lastName} </p>
-        <p>Email : {props.email}</p>
-        <p>Âge : {props.age}</p>
-        <p>Occupation: {props.occupation}</p>
+        <div className="profil-info">
+          <h1>
+            Mon Profil :{" "}
+            <Button className="button-modifier" variant="contained">
+              Modifier
+            </Button>
+          </h1>
+          <p>Prénom : {props.firstName}</p>
+          <p>Nom : {props.lastName} </p>
+          <p>Email : {props.email}</p>
+          <p>Âge : {props.age}</p>
+          <p>Occupation: {props.occupation}</p>
+        </div>
       </div>
     </>
   );

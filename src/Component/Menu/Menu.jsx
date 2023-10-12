@@ -1,6 +1,6 @@
 import "./Menu.css";
 import Login from "../Login/Login";
-import Signin from "../Signin/Signin";
+import Signup from "../Signup/Signup";
 import Profil from "../Profil/Profil";
 
 function Menu() {

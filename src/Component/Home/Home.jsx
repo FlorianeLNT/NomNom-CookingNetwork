@@ -1,13 +1,14 @@
 import "./Home.css";
-import Menu from "../Menu/Menu";
+import NavBar from "../NavBar/NavBar";
 import InputPost from "../InputPost/InputPost";
 import Card from "../Card/Card";
 import { useEffect, useState } from "react";
-// test git
+import Login from "../Login/Login";
+
 function Home() {
   return (
     <>
-      <Card />
+      <Login />
     </>
   );
 }

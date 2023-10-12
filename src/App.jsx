@@ -3,6 +3,8 @@ import { useState } from "react";
 import "./App.css";
 import Home from "./Component/Home/Home";
 import Login from "./Component/Login/Login";
+import NavBar from "./Component/NavBar/NavBar";
+import SignUp from "./Component/Signup/Signup";
 
 // Commentaire pour tester
 function App() {
@@ -18,6 +20,8 @@ function App() {
   ]);
   return (
     <div>
+      <NavBar />
+      <SignUp />
       <RouterProvider router={router} />
     </div>
   );

@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -36,13 +36,47 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 function SignUp() {
-  const handleSubmit = (event) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // const [comfirmPassword, setComfirmPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        firstName: firstName,
+        lastName: lastName,
+      }),
+    };
+    const response = await fetch(
+      "https://social-network-api.osc-fr1.scalingo.io/nom-nom/register",
+      options
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error(`Erreur ${response.status}: ${response.statusText}`);
+    }
+
+    if (data.message) {
+      setMessage(data.message);
+    }
+
+    // if (password != comfirmPassword) {
+    //   setMessage("Veuillez saisir des mots de passe identiques");
+    //   return;
+    // }
   };
 
   return (
@@ -77,8 +111,10 @@ function SignUp() {
                   required
                   fullWidth
                   id="firstName"
-                  label="First Name"
+                  label="Prénom"
                   autoFocus
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -86,9 +122,11 @@ function SignUp() {
                   required
                   fullWidth
                   id="lastName"
-                  label="Last Name"
+                  label="Nom de famille"
                   name="lastName"
                   autoComplete="family-name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -99,6 +137,8 @@ function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -106,12 +146,27 @@ function SignUp() {
                   required
                   fullWidth
                   name="password"
-                  label="Password"
+                  label="Mot de passe"
                   type="password"
                   id="password"
-                  autoComplete="new-password"
+                  autoComplete="current-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
+              {/* <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="comfirmPassword"
+                  label="Comfirmer mot de passe"
+                  type="Password"
+                  id="comfirmPassword"
+                  autoComplete="new-password"
+                  value={comfirmPassword}
+                  onChange={(e) => setComfirmPassword(e.target.value)}
+                />
+              </Grid> */}
               <Grid item xs={12}>
                 <FormControlLabel
                   control={
@@ -137,7 +192,9 @@ function SignUp() {
               </Grid>
             </Grid>
           </Box>
+          <div>{message && <div style={{ color: "red" }}>{message}</div>}</div>
         </Box>
+
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>

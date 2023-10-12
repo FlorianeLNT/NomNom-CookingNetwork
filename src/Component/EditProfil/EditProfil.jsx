@@ -2,18 +2,50 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import "./EditProfil.css";
+import Button from "@mui/material/Button";
+import { useState } from "react";
 
 function EditProfil() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [age, setAge] = useState("");
+  const [occupation, setOccupation] = useState("");
+
+  const edit = async (e) => {
+    e.preventDefault();
+
+    const options = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstname: firstName,
+        lastname: lastName,
+        age: age,
+        occupation: occupation,
+      }),
+    };
+    const response = await fetch(
+      "https://social-network-api.osc-fr1.scalingo.io/nom-nom//user",
+      options
+    );
+
+    const data = await response.json();
+
+    const token = data.token;
+  };
   return (
     <Box
-      component="form"
+      s
       sx={{
         "& .MuiTextField-root": { m: 1, width: "25ch" },
       }}
       noValidate
       autoComplete="off"
     >
-      <div>
+      <div className="inputEdit">
         <TextField
           required
           id="outlined-firstName"
@@ -22,15 +54,29 @@ function EditProfil() {
           InputLabelProps={{
             shrink: true,
           }}
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
         />
         <TextField
           required
-          id="outlined-firstName"
+          id="outlined-lastName"
           label="Nom"
           type="text"
           InputLabelProps={{
             shrink: true,
           }}
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+        <TextField
+          id="outlined-age"
+          label="Âge"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          value={age}
+          onChange={(e) => setAge(e.target.value)}
         />
         <TextField
           required
@@ -40,44 +86,24 @@ function EditProfil() {
           InputLabelProps={{
             shrink: true,
           }}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
-          id="outlined-age"
-          label="Âge"
-          type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-        <TextField
-          id="outlined-firstName"
+          id="outlined-occupation"
           label="Occupation"
           type="text"
           InputLabelProps={{
             shrink: true,
           }}
+          value={occupation}
+          onChange={(e) => setOccupation(e.target.value)}
         />
-        <TextField
-          id="outlined-password-input"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-        />
-        <TextField
-          id="outlined-read-only-input"
-          label="Read Only"
-          defaultValue="Hello World"
-          InputProps={{
-            readOnly: true,
-          }}
-        />
-        <TextField id="outlined-search" label="Search field" type="search" />
-        <TextField
-          id="outlined-helperText"
-          label="Helper text"
-          defaultValue="Default Value"
-          helperText="Some important text"
-        />
+      </div>
+      <div className="button-save">
+        <Button variant="contained" onClick={edit}>
+          Enregistrer
+        </Button>
       </div>
     </Box>
   );

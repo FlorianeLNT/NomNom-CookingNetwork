@@ -16,6 +16,18 @@ function App() {
       path: "/login",
       element: <Login />,
     },
+    {
+      path: "/register",
+      element: <SignUp />,
+    },
+    // {
+    //   path: "/profil",
+    //   element: <Profil />,
+    // },
+    // {
+    //   path: "/editprofil",
+    //   element: <editProfil />,
+    // },
   ]);
   return (
     <div>

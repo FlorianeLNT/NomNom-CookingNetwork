@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import NavBar from "../NavBar/NavBar";
 
 function Copyright(props) {
   return (
@@ -78,6 +79,7 @@ function Login() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
+        <NavBar />
         <CssBaseline />
         <Box
           sx={{
@@ -123,10 +125,7 @@ function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Se souvenir de moi"
-            />
+
             <Button
               type="submit"
               fullWidth

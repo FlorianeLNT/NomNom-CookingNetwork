@@ -68,9 +68,23 @@ function Login() {
       return;
     }
 
-    const token = data.token;
-    setMessage("Vous êtes connecté");
-    console.log(token);
+    if (response.status === 200) {
+      const token = data.token;
+      localStorage.setItem("email", email);
+      localStorage.setItem("password", password);
+      localStorage.setItem("token", token);
+      setMessage("Vous êtes connecté");
+    }
+
+    React.useEffect(() => {
+      const storedEmail = localStorage.getItem("email");
+      const storedPassword = localStorage.getItem("password");
+
+      if (storedEmail && storedPassword) {
+        setEmail(storedEmail);
+        setPassword(storedPassword);
+      }
+    }, []);
   };
 
   return (

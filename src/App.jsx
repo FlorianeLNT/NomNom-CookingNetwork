@@ -4,7 +4,6 @@ import "./App.css";
 import Home from "./Component/Home/Home";
 import Login from "./Component/Login/Login";
 
-// Commentaire pour tester
 function App() {
   const router = createBrowserRouter([
     {

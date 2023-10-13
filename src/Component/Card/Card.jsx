@@ -10,6 +10,7 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { useState } from "react";
 
 const steps = [
   {
@@ -38,6 +39,43 @@ const VisuallyHiddenInput = styled("input")({
 function Card() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [selectedFile, setSelectedFile] = React.useState(null); // État pour stocker le fichier sélectionné
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handlePublish = async (event) => {
+    event.preventDefault();
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "bearer" + token,
+      },
+      body: JSON.stringify({
+        title: title,
+        content: content,
+      }),
+    };
+    const response = await fetch(
+      "https://social-network-api.osc-fr1.scalingo.io/nom-nom/post",
+      options
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error(`Erreur ${response.status}: ${response.statusText}`);
+    }
+
+    if (data.message) {
+      setMessage(data.message);
+    }
+    if (response.status === 200) {
+      const token = data.token;
+      localStorage.setItem("token", token);
+    }
+  };
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -55,6 +93,37 @@ function Card() {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
+  };
+
+  const createCard = (step, index) => {
+    if (index === 0) {
+      return <InputFileUpload />;
+    }
+    if (index === 1) {
+      return (
+        <TextField
+          className="text"
+          id="outlined-multiline-static"
+          label={step.label}
+          multiline
+          rows={4}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+      );
+    } else {
+      return (
+        <TextField
+          className="text"
+          id="outlined-multiline-static"
+          label={step.label}
+          multiline
+          rows={4}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
+      );
+    }
   };
 
   const InputFileUpload = () => {
@@ -91,7 +160,7 @@ function Card() {
             <StepLabel
               optional={
                 index === 2 ? (
-                  <Typography variant="caption">Last step</Typography>
+                  <Typography variant="caption">Dernière étape</Typography>
                 ) : null
               }
             >
@@ -101,31 +170,20 @@ function Card() {
               <Typography>{step.description}</Typography>
               <Box sx={{ mb: 2 }}>
                 <div>
-                  {index === 0 ? (
-                    <InputFileUpload />
-                  ) : (
-                    <TextField
-                      className="text"
-                      id="outlined-multiline-static"
-                      label={step.label}
-                      multiline
-                      rows={4}
-                      defaultValue="Default Value"
-                    />
-                  )}
+                  {createCard(step, index)}
                   <Button
                     variant="contained"
                     onClick={handleNext}
                     sx={{ mt: 1, mr: 1 }}
                   >
-                    {index === steps.length - 1 ? "Finish" : "Continue"}
+                    {index === steps.length - 1 ? "Terminer" : "Continuer"}
                   </Button>
                   <Button
                     disabled={index === 0}
                     onClick={handleBack}
                     sx={{ mt: 1, mr: 1 }}
                   >
-                    Back
+                    Retour
                   </Button>
                 </div>
               </Box>
@@ -135,9 +193,18 @@ function Card() {
       </Stepper>
       {activeStep === steps.length && (
         <Paper square elevation={0} sx={{ p: 3 }}>
-          <Typography>All steps completed - you&apos;re finished</Typography>
+          <Button
+            type="submit"
+            onClick={handlePublish}
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Publier
+          </Button>
+          <Typography variant="body1">{message}</Typography>
           <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-            Reset
+            Réinitialiser
           </Button>
         </Paper>
       )}

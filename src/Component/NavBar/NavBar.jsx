@@ -66,10 +66,10 @@ export default function MenuAppBar() {
           </MenuItem>
           {isAuthenticated ? (
             <>
-              <MenuItem sx={{ fontSize: "2rem" }} onClick={navigateToProfil}>
+              <MenuItem sx={{ fontSize: "2em" }} onClick={navigateToProfil}>
                 Mon Profil
               </MenuItem>
-              <MenuItem sx={{ fontSize: "2rem" }} onClick={handleLogout}>
+              <MenuItem sx={{ fontSize: "2em" }} onClick={handleLogout}>
                 Déconnexion
               </MenuItem>
               {/* <MenuItem onClick={navigateToEditProfil}>

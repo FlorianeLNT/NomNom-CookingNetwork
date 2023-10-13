@@ -1,4 +1,5 @@
 import * as React from "react";
+import "./PostedCard.css";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -51,61 +52,85 @@ function PostedCard() {
     const data = await response.json();
   };
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        height="194"
-        image={
-          "https://www.cuisineactuelle.fr/imgre/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Fcac.2F2023.2F07.2F21.2Fd6d4f282-c01c-4ab0-99ca-2824d28e1fd2.2Ejpeg/750x562/quality/80/crop-from/center/cr/wqkgQmVyZ2Vyb24vU3VjcsOpIFNhbMOpIC8gQ3Vpc2luZSBBY3R1ZWxsZQ%3D%3D/focus-point/731%2C820/paella-traditionnelle.jpeg"
-        }
-        alt="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="h5" color="text.secondary">
-          PAËLLA{title}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </ExpandMore>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+    <div className="renderCards">
+      <Card sx={{ width: "40vw", marginTop: "2vh" }}>
+        <CardMedia
+          sx={{ height: "40vh" }}
+          component="img"
+          height="194"
+          image={
+            "https://www.cuisineactuelle.fr/imgre/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Fcac.2F2023.2F07.2F21.2Fd6d4f282-c01c-4ab0-99ca-2824d28e1fd2.2Ejpeg/750x562/quality/80/crop-from/center/cr/wqkgQmVyZ2Vyb24vU3VjcsOpIFNhbMOpIC8gQ3Vpc2luZSBBY3R1ZWxsZQ%3D%3D/focus-point/731%2C820/paella-traditionnelle.jpeg"
+          }
+          alt="Paella dish"
+        />
         <CardContent>
-          <Typography paragraph>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae
-            odio saepe fuga laborum quo dolor laboriosam harum quasi aspernatur
-            vel soluta ea sapiente unde cum, assumenda ducimus, tempore ipsum
-            laudantium consequuntur error aliquid iure? Velit, repellendus
-            dolores explicabo architecto reiciendis exercitationem quia,
-            delectus, vel alias necessitatibus repudiandae ad. Ab eos rem
-            officia nostrum unde? Dolore consequuntur, ducimus quasi ut quae
-            laudantium odio nemo veniam iusto soluta eligendi officia facere
-            distinctio maiores beatae cumque culpa esse earum rerum, dignissimos
-            consequatur. Inventore, repellat! Quisquam voluptates, porro
-            reiciendis mollitia veritatis debitis omnis deleniti ipsa tempora
-            dolorem eaque est, ex libero eius voluptatum repudiandae fugit et
-            facere incidunt. Dolores non iusto eum debitis fugiat labore
-            praesentium cum excepturi. Perferendis incidunt harum quos nobis.
-            Harum commodi cumque natus earum nemo id, atque obcaecati, expedita
-            ipsum laborum voluptatum explicabo assumenda eos aperiam blanditiis
-            adipisci odit animi aliquid veritatis et accusantium porro iusto.
-            Veritatis voluptatem quas iure?{content}
+          <Typography
+            sx={{
+              fontSize: "3rem",
+              display: "flex",
+              justifyContent: "center",
+              color: "black",
+            }}
+            variant="h5"
+            color="text.secondary"
+          >
+            PAËLLA{title}
           </Typography>
         </CardContent>
-      </Collapse>
-    </Card>
+        <CardActions disableSpacing>
+          <IconButton sx={{ color: "red" }} aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton sx={{ color: "blue" }} aria-label="comment">
+            <ShareIcon />
+          </IconButton>
+          <ExpandMore
+            sx={{ color: "black" }}
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </ExpandMore>
+        </CardActions>
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography
+              sx={{
+                fontSize: "1.5rem",
+                display: "flex",
+                textAlign: "justify",
+                color: "black",
+              }}
+              paragraph
+            >
+              Méthode : Faites chauffer 1/2 tasse de bouillon dans une casserole
+              jusqu'à ébullition, ajoutez safran et laisser reposer 10 minutes.
+              Chauffer l'huile dans un (14 à Poêle à paella de 16 pouces ou une
+              grande poêle profonde à feu moyen-vif chaleur. Ajouter le poulet,
+              les crevettes et le chorizo ​​et cuire en remuant. de temps en
+              temps jusqu'à ce qu'ils soient légèrement dorés, 6 à 8 minutes.
+              Transfert crevettes dans une grande assiette et réserver, en
+              laissant le poulet et le chorizo dans la casserole. Ajouter le
+              pimentón, les feuilles de laurier, l'ail, les tomates, l'oignon,
+              saler et poivrer et cuire en remuant souvent jusqu'à
+              épaississement et parfumé, environ 10 minutes. Ajouter le bouillon
+              de safran et les 4 1/2 restants tasses de bouillon de poulet ;
+              porter à ébullition. Ajouter le riz et remuer très doucement
+              distribuer. Garnir d'artichauts et de poivrons et cuire sans en
+              remuant jusqu'à ce que la majeure partie du liquide soit absorbée,
+              15 à 18 minutes. Réduire le feu à moyen-doux, ajouter les
+              crevettes et les moules réservées, les glisser dans le riz et
+              cuire à nouveau sans remuer, jusqu'à ce que les moules soient
+              ouvertes et que le riz soit juste tendre, 5 à 7 minutes plus.
+              (Jetez toutes les moules qui ne s'ouvrent pas.) Réservez du
+              chauffer pour laisser reposer 10 minutes, puis servir.{content}
+            </Typography>
+          </CardContent>
+        </Collapse>
+      </Card>
+    </div>
   );
 }
 export default PostedCard;

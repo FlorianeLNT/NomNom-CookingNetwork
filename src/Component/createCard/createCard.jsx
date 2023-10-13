@@ -14,13 +14,13 @@ import { useState } from "react";
 
 const steps = [
   {
-    label: "Mettre une image",
+    label: "Choisissez votre image",
   },
   {
-    label: "Créer un titre",
+    label: "Définissez un titre",
   },
   {
-    label: "Créer votre recette",
+    label: "Détaillez votre recette",
   },
 ];
 
@@ -36,46 +36,45 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
-function createCard() {
+function CreateCard() {
   const [activeStep, setActiveStep] = React.useState(0);
-  const [selectedFile, setSelectedFile] = React.useState(null); // État pour stocker le fichier sélectionné
+  const [selectedFile, setSelectedFile] = React.useState(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [message, setMessage] = useState("");
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
-  const handlePublish = async (event) => {
-    event.preventDefault();
-
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "bearer" + token,
-      },
-      body: JSON.stringify({
-        title: title,
-        content: content,
-      }),
-    };
-    const response = await fetch(
-      "https://social-network-api.osc-fr1.scalingo.io/nom-nom/post",
-      options
-    );
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      console.error(`Erreur ${response.status}: ${response.statusText}`);
+  async function handlePublish() {
+    if (!token) {
+      console.error("Aucun Token trouvé");
+      return;
     }
+    try {
+      const response = await fetch(
+        "https://social-network-api.osc-fr1.scalingo.io/nom-nom/post",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          body: JSON.stringify({
+            title: title,
+            content: content,
+          }),
+        }
+      );
 
-    if (data.message) {
-      setMessage(data.message);
+      if (!response.ok) {
+        throw new Error(`Erreur de réseau - ${response.status}`);
+      }
+      const data = await response.json();
+      console.log("Nouveau post créé :", data);
+      console.log(title, content);
+    } catch (error) {
+      console.error("Erreur : " + error);
     }
-    if (response.status === 200) {
-      const token = data.token;
-      localStorage.setItem("token", token);
-    }
-  };
+  }
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -87,7 +86,7 @@ function createCard() {
 
   const handleReset = () => {
     setActiveStep(0);
-    setSelectedFile(null); // Réinitialisez également le fichier sélectionné
+    setSelectedFile(null);
   };
 
   const handleFileChange = (event) => {
@@ -95,7 +94,7 @@ function createCard() {
     setSelectedFile(file);
   };
 
-  const createCard = (step, index) => {
+  const CreateCard = (step, index) => {
     if (index === 0) {
       return <InputFileUpload />;
     }
@@ -137,7 +136,7 @@ function createCard() {
           Upload file
           <VisuallyHiddenInput
             type="file"
-            accept="image/*" // Spécifiez le type de fichiers que vous souhaitez accepter (images ici)
+            accept="image/*"
             onChange={handleFileChange}
           />
         </Button>
@@ -170,7 +169,7 @@ function createCard() {
               <Typography>{step.description}</Typography>
               <Box sx={{ mb: 2 }}>
                 <div>
-                  {createCard(step, index)}
+                  {CreateCard(step, index)}
                   <Button
                     variant="contained"
                     onClick={handleNext}
@@ -212,4 +211,4 @@ function createCard() {
   );
 }
 
-export default createCard;
+export default CreateCard;

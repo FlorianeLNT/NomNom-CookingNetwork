@@ -1,10 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { useState } from "react";
 import "./App.css";
 import Home from "./Component/Home/Home";
 import Login from "./Component/Login/Login";
-import NavBar from "./Component/NavBar/NavBar";
 import SignUp from "./Component/Signup/Signup";
+import CreateCard from "./Component/createCard/createCard";
+import Profil from "./Component/Profil/Profil";
+import EditProfil from "./Component/EditProfil/EditProfil";
 
 function App() {
   const router = createBrowserRouter([
@@ -20,14 +21,18 @@ function App() {
       path: "/register",
       element: <SignUp />,
     },
-    // {
-    //   path: "/profil",
-    //   element: <Profil />,
-    // },
-    // {
-    //   path: "/editprofil",
-    //   element: <editProfil />,
-    // },
+    {
+      path: "/post",
+      element: <CreateCard />,
+    },
+    {
+      path: "/profil",
+      element: <Profil />,
+    },
+    {
+      path: "/editingprofil",
+      element: <EditProfil />,
+    },
   ]);
   return (
     <div>

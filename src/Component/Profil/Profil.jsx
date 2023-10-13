@@ -2,12 +2,17 @@ import "./Profil.css";
 import Button from "@mui/material/Button";
 import EditProfil from "../EditProfil/EditProfil";
 import NavBar from "../NavBar/NavBar";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Profil(props) {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-
+  const navigate = useNavigate();
+  const navigateToEditProfil = () => {
+    navigate("/editingprofil");
+  };
   async function userData() {
     const options = {
       method: "GET",
@@ -34,7 +39,11 @@ function Profil(props) {
         <div className="profil-info">
           <h1>
             Mon Profil :{" "}
-            <Button className="button-modifier" variant="contained">
+            <Button
+              className="button-modifier"
+              variant="contained"
+              onClick={navigateToEditProfil}
+            >
               Modifier
             </Button>
           </h1>

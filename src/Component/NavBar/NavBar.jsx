@@ -11,18 +11,6 @@ export default function MenuAppBar() {
   const navigate = useNavigate();
   const isAuthenticated = !!localStorage.getItem("token");
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
-
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   const navigateToLogin = () => {
     navigate("/login");
   };
@@ -30,14 +18,12 @@ export default function MenuAppBar() {
     navigate("/");
   };
   const navigateToProfil = () => {
-    navigate("/user");
+    navigate("/profil");
   };
   const navigateToCard = () => {
     navigate("/post");
   };
-  // const navigateToEditProfil = () => {
-  //   navigate("/editprofil");
-  // };
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     setAuth(false);
@@ -69,9 +55,6 @@ export default function MenuAppBar() {
               <MenuItem sx={{ fontSize: "2em" }} onClick={handleLogout}>
                 Se déconnecter
               </MenuItem>
-              {/* <MenuItem onClick={navigateToEditProfil}>
-                Modifier Profil
-              </MenuItem> */}
             </>
           ) : (
             <MenuItem sx={{ fontSize: "2rem" }} onClick={navigateToLogin}>

@@ -11,6 +11,8 @@ import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import NavBar from "../NavBar/NavBar";
 
 const steps = [
   {
@@ -37,12 +39,17 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 function CreateCard() {
+  const navigate = useNavigate();
   const [activeStep, setActiveStep] = React.useState(0);
   const [selectedFile, setSelectedFile] = React.useState(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [image, setImage] = useState("");
   const [message, setMessage] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const navigateToHome = () => {
+    navigate("/");
+  };
 
   async function handlePublish() {
     if (!token) {
@@ -59,6 +66,7 @@ function CreateCard() {
             Authorization: "Bearer " + token,
           },
           body: JSON.stringify({
+            image: image,
             title: title,
             content: content,
           }),
@@ -71,6 +79,9 @@ function CreateCard() {
       const data = await response.json();
       console.log("Nouveau post créé :", data);
       console.log(title, content);
+      {
+        navigateToHome();
+      }
     } catch (error) {
       console.error("Erreur : " + error);
     }
@@ -152,62 +163,65 @@ function CreateCard() {
   };
 
   return (
-    <Box sx={{ maxWidth: 400 }}>
-      <Stepper activeStep={activeStep} orientation="vertical">
-        {steps.map((step, index) => (
-          <Step key={step.label}>
-            <StepLabel
-              optional={
-                index === 2 ? (
-                  <Typography variant="caption">Dernière étape</Typography>
-                ) : null
-              }
+    <div>
+      <NavBar />
+      <Box sx={{ maxWidth: 400 }}>
+        <Stepper activeStep={activeStep} orientation="vertical">
+          {steps.map((step, index) => (
+            <Step key={step.label}>
+              <StepLabel
+                optional={
+                  index === 2 ? (
+                    <Typography variant="caption">Dernière étape</Typography>
+                  ) : null
+                }
+              >
+                {step.label}
+              </StepLabel>
+              <StepContent>
+                <Typography>{step.description}</Typography>
+                <Box sx={{ mb: 2 }}>
+                  <div>
+                    {CreateCard(step, index)}
+                    <Button
+                      variant="contained"
+                      onClick={handleNext}
+                      sx={{ mt: 1, mr: 1 }}
+                    >
+                      {index === steps.length - 1 ? "Terminer" : "Continuer"}
+                    </Button>
+                    <Button
+                      disabled={index === 0}
+                      onClick={handleBack}
+                      sx={{ mt: 1, mr: 1 }}
+                    >
+                      Retour
+                    </Button>
+                  </div>
+                </Box>
+              </StepContent>
+            </Step>
+          ))}
+        </Stepper>
+        {activeStep === steps.length && (
+          <Paper square elevation={0} sx={{ p: 3 }}>
+            <Button
+              type="submit"
+              onClick={handlePublish}
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
             >
-              {step.label}
-            </StepLabel>
-            <StepContent>
-              <Typography>{step.description}</Typography>
-              <Box sx={{ mb: 2 }}>
-                <div>
-                  {CreateCard(step, index)}
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    {index === steps.length - 1 ? "Terminer" : "Continuer"}
-                  </Button>
-                  <Button
-                    disabled={index === 0}
-                    onClick={handleBack}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    Retour
-                  </Button>
-                </div>
-              </Box>
-            </StepContent>
-          </Step>
-        ))}
-      </Stepper>
-      {activeStep === steps.length && (
-        <Paper square elevation={0} sx={{ p: 3 }}>
-          <Button
-            type="submit"
-            onClick={handlePublish}
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Publier
-          </Button>
-          <Typography variant="body1">{message}</Typography>
-          <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-            Réinitialiser
-          </Button>
-        </Paper>
-      )}
-    </Box>
+              Publier
+            </Button>
+            <Typography variant="body1">{message}</Typography>
+            <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+              Réinitialiser
+            </Button>
+          </Paper>
+        )}
+      </Box>
+    </div>
   );
 }
 

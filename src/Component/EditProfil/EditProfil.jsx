@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import "./EditProfil.css";
 import Button from "@mui/material/Button";
 import { useState } from "react";
+import NavBar from "../NavBar/NavBar";
 
 function EditProfil() {
   const [firstName, setFirstName] = useState("");
@@ -38,75 +39,78 @@ function EditProfil() {
     const token = data.token;
   };
   return (
-    <Box
-      s
-      sx={{
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <div className="inputEdit">
-        <TextField
-          required
-          id="outlined-firstName"
-          label="Prénom"
-          type="text"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-        <TextField
-          required
-          id="outlined-lastName"
-          label="Nom"
-          type="text"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-        <TextField
-          id="outlined-age"
-          label="Âge"
-          type="number"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-        />
-        <TextField
-          required
-          id="outlined-email"
-          label="E-mail"
-          type="email"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <TextField
-          id="outlined-occupation"
-          label="Occupation"
-          type="text"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          value={occupation}
-          onChange={(e) => setOccupation(e.target.value)}
-        />
-      </div>
-      <div>
-        <Button className="button-save" variant="contained" onClick={edit}>
-          Enregistrer
-        </Button>
-      </div>
-    </Box>
+    <div>
+      <NavBar />
+      <Box
+        s
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "25ch" },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <div className="inputEdit">
+          <TextField
+            required
+            id="outlined-firstName"
+            label="Prénom"
+            type="text"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <TextField
+            required
+            id="outlined-lastName"
+            label="Nom"
+            type="text"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          <TextField
+            id="outlined-age"
+            label="Âge"
+            type="number"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+          />
+          <TextField
+            required
+            id="outlined-email"
+            label="E-mail"
+            type="email"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextField
+            id="outlined-occupation"
+            label="Occupation"
+            type="text"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={occupation}
+            onChange={(e) => setOccupation(e.target.value)}
+          />
+        </div>
+        <div>
+          <Button className="button-save" variant="contained" onClick={edit}>
+            Enregistrer
+          </Button>
+        </div>
+      </Box>
+    </div>
   );
 }
 export default EditProfil;

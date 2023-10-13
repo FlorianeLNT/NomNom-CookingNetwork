@@ -40,6 +40,10 @@ function SignUp() {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
+  const navigateToHome = () => {
+    navigate("/");
+  };
+
   const navigateToLogin = () => {
     navigate("/login");
   };
@@ -88,11 +92,13 @@ function SignUp() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <Avatar
+            onClick={navigateToHome}
+            className="avatar"
+            sx={{ m: 1, bgcolor: "#6b041f" }}
+          ></Avatar>
           <Typography component="h1" variant="h5">
-            Créer le compte
+            Créer un compte
           </Typography>
           <Box
             component="form"
@@ -119,7 +125,7 @@ function SignUp() {
                   required
                   fullWidth
                   id="lastName"
-                  label="Nom de famille"
+                  label="Nom"
                   name="lastName"
                   autoComplete="family-name"
                   value={lastName}
@@ -131,7 +137,7 @@ function SignUp() {
                   required
                   fullWidth
                   id="email"
-                  label="Email Address"
+                  label="Adresse mail"
                   name="email"
                   autoComplete="email"
                   value={email}
@@ -156,13 +162,17 @@ function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, backgroundColor: "#6b041f" }}
             >
-              Créer le compte
+              Créer un compte
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/login" variant="body2">
+                <Link
+                  href="/login"
+                  variant="body2"
+                  sx={{ color: "#6b041f", textDecoration: "none" }}
+                >
                   Vous avez déjà un compte ? Connectez-vous
                 </Link>
               </Grid>

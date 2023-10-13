@@ -63,7 +63,7 @@ function Login() {
     const data = await response.json();
 
     if (response.status === 401) {
-      setMessage("Email ou mot de passe incorret");
+      setMessage("Email ou mot de passe incorrect");
       return;
     }
 
@@ -91,9 +91,11 @@ function Login() {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <Avatar
+            onClick={navigateToHome}
+            className="avatar"
+            sx={{ m: 1, bgcolor: "#6b041f" }}
+          ></Avatar>
           <Typography component="h1" variant="h5">
             Connexion
           </Typography>
@@ -132,18 +134,26 @@ function Login() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, backgroundColor: "#6b041f" }}
             >
               Se connecter
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link
+                  href="#"
+                  variant="body2"
+                  sx={{ color: "#6b041f", textDecoration: "none" }}
+                >
                   Mot de passe oublié
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/register" variant="body2">
+                <Link
+                  href="/register"
+                  variant="body2"
+                  sx={{ color: "#6b041f", textDecoration: "none" }}
+                >
                   {"Créez un compte"}
                 </Link>
               </Grid>

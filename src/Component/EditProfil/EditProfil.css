@@ -1,9 +1,18 @@
 .button-save {
-  background-color: #f4cb9e !important;
-  color: #371f10 !important;
+  background-color: #6b041f !important;
 }
 
 .inputEdit {
   display: flex !important;
   flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-top: 10vh;
+  gap: 50px;
+  background-color: #f4cb9e;
+  padding: 5vh;
+}
+
+.button-save {
+  color: white;
 }

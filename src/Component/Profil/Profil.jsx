@@ -51,7 +51,7 @@ function Profil(props) {
           <p>Nom : {props.lastName} </p>
           <p>Email : {props.email}</p>
           <p>Âge : {props.age}</p>
-          <p>Occupation: {props.occupation}</p>
+          <p>Hobby: {props.hobby}</p>
         </div>
       </div>
     </>

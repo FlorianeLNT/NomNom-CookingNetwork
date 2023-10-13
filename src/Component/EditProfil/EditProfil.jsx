@@ -11,7 +11,7 @@ function EditProfil() {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
-  const [occupation, setOccupation] = useState("");
+  const [hobby, setHobby] = useState("");
 
   const edit = async (e) => {
     e.preventDefault();
@@ -26,7 +26,7 @@ function EditProfil() {
         firstname: firstName,
         lastname: lastName,
         age: age,
-        occupation: occupation,
+        Hobby: hobby,
       }),
     };
     const response = await fetch(
@@ -94,17 +94,15 @@ function EditProfil() {
             onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
-            id="outlined-occupation"
-            label="Occupation"
+            id="outlined-Hobby"
+            label="Hobby"
             type="text"
             InputLabelProps={{
               shrink: true,
             }}
-            value={occupation}
-            onChange={(e) => setOccupation(e.target.value)}
+            value={hobby}
+            onChange={(e) => setHobby(e.target.value)}
           />
-        </div>
-        <div>
           <Button className="button-save" variant="contained" onClick={edit}>
             Enregistrer
           </Button>

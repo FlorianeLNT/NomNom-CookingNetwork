@@ -30,39 +30,45 @@ export default function MenuAppBar() {
     navigateToHome();
   };
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="static"
-        sx={{ backgroundColor: "#6b041f", height: "10vh" }}
-      >
-        <Toolbar>
-          <MenuItem
-            onClick={navigateToHome}
-            variant="h6"
-            component="div"
-            sx={{ fontSize: "2rem" }}
-          >
-            Accueil
-          </MenuItem>
-          {isAuthenticated ? (
-            <>
-              <MenuItem sx={{ fontSize: "2em" }} onClick={navigateToProfil}>
-                Mon Profil
-              </MenuItem>
-              <MenuItem sx={{ fontSize: "2em" }} onClick={navigateToCard}>
-                Publier
-              </MenuItem>
-              <MenuItem sx={{ fontSize: "2em" }} onClick={handleLogout}>
-                Se déconnecter
-              </MenuItem>
-            </>
-          ) : (
-            <MenuItem sx={{ fontSize: "2rem" }} onClick={navigateToLogin}>
-              Se connecter
+    <div className="navBar">
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar
+          position="static"
+          sx={{
+            backgroundColor: "#6b041f",
+            height: "10vh",
+            flexDirection: "row",
+          }}
+        >
+          <Toolbar>
+            <MenuItem
+              onClick={navigateToHome}
+              variant="h6"
+              component="div"
+              sx={{ fontSize: "2rem" }}
+            >
+              Accueil
             </MenuItem>
-          )}
-        </Toolbar>
-      </AppBar>
-    </Box>
+            {isAuthenticated ? (
+              <>
+                <MenuItem sx={{ fontSize: "2em" }} onClick={navigateToProfil}>
+                  Mon Profil
+                </MenuItem>
+                <MenuItem sx={{ fontSize: "2em" }} onClick={navigateToCard}>
+                  Publier
+                </MenuItem>
+                <MenuItem sx={{ fontSize: "2em" }} onClick={handleLogout}>
+                  Se déconnecter
+                </MenuItem>
+              </>
+            ) : (
+              <MenuItem sx={{ fontSize: "2rem" }} onClick={navigateToLogin}>
+                Se connecter
+              </MenuItem>
+            )}
+          </Toolbar>
+        </AppBar>
+      </Box>
+    </div>
   );
 }

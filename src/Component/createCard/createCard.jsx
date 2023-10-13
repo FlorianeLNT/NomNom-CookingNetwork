@@ -36,7 +36,7 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
-function Card() {
+function createCard() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [selectedFile, setSelectedFile] = React.useState(null); // État pour stocker le fichier sélectionné
   const [title, setTitle] = useState("");
@@ -212,4 +212,4 @@ function Card() {
   );
 }
 
-export default Card;
+export default createCard;

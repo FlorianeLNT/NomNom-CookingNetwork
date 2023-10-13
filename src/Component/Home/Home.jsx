@@ -6,7 +6,6 @@ function Home() {
   return (
     <>
       <NavBar />
-      <Card />
       <PostedCard />
     </>
   );

@@ -2,16 +2,7 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import Switch from "@mui/material/Switch";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormGroup from "@mui/material/FormGroup";
 import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import Link from "@mui/material/Link";
 import { useNavigate } from "react-router-dom";
 
 export default function MenuAppBar() {
@@ -39,7 +30,10 @@ export default function MenuAppBar() {
     navigate("/");
   };
   const navigateToProfil = () => {
-    navigate("/profil");
+    navigate("/user");
+  };
+  const navigateToCard = () => {
+    navigate("/post");
   };
   // const navigateToEditProfil = () => {
   //   navigate("/editprofil");
@@ -69,8 +63,11 @@ export default function MenuAppBar() {
               <MenuItem sx={{ fontSize: "2em" }} onClick={navigateToProfil}>
                 Mon Profil
               </MenuItem>
+              <MenuItem sx={{ fontSize: "2em" }} onClick={navigateToCard}>
+                Publier
+              </MenuItem>
               <MenuItem sx={{ fontSize: "2em" }} onClick={handleLogout}>
-                Déconnexion
+                Se déconnecter
               </MenuItem>
               {/* <MenuItem onClick={navigateToEditProfil}>
                 Modifier Profil
@@ -78,7 +75,7 @@ export default function MenuAppBar() {
             </>
           ) : (
             <MenuItem sx={{ fontSize: "2rem" }} onClick={navigateToLogin}>
-              Connexion
+              Se connecter
             </MenuItem>
           )}
         </Toolbar>
@@ -86,5 +83,3 @@ export default function MenuAppBar() {
     </Box>
   );
 }
-
-//aaa

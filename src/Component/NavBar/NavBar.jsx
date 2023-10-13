@@ -6,13 +6,19 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import Switch from "@mui/material/Switch";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormGroup from "@mui/material/FormGroup";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import Link from "@mui/material/Link";
+import { useNavigate } from "react-router-dom";
 
 export default function MenuAppBar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const navigate = useNavigate();
+  const isAuthenticated = !!localStorage.getItem("token");
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -26,56 +32,54 @@ export default function MenuAppBar() {
     setAnchorEl(null);
   };
 
+  const navigateToLogin = () => {
+    navigate("/login");
+  };
+  const navigateToHome = () => {
+    navigate("/");
+  };
+  const navigateToProfil = () => {
+    navigate("/profil");
+  };
+  // const navigateToEditProfil = () => {
+  //   navigate("/editprofil");
+  // };
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setAuth(false);
+    navigateToHome();
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar
+        position="static"
+        sx={{ backgroundColor: "#6b041f", height: "10vh" }}
+      >
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
+          <MenuItem
+            onClick={navigateToHome}
+            variant="h6"
+            component="div"
+            sx={{ fontSize: "2rem" }}
           >
-            <MenuIcon />
-          </IconButton>
-          <Link href="/" color={"#fff"} sx={{ flexGrow: 1 }}>
-            Page d'accueil
-          </Link>
-          <Link href="/login" color={"#fff"} sx={{ flexGrow: 1 }}>
-            Se connecter
-          </Link>
-          {auth && (
-            <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-              </Menu>
-            </div>
+            Accueil
+          </MenuItem>
+          {isAuthenticated ? (
+            <>
+              <MenuItem sx={{ fontSize: "2rem" }} onClick={navigateToProfil}>
+                Mon Profil
+              </MenuItem>
+              <MenuItem sx={{ fontSize: "2rem" }} onClick={handleLogout}>
+                Déconnexion
+              </MenuItem>
+              {/* <MenuItem onClick={navigateToEditProfil}>
+                Modifier Profil
+              </MenuItem> */}
+            </>
+          ) : (
+            <MenuItem sx={{ fontSize: "2rem" }} onClick={navigateToLogin}>
+              Connexion
+            </MenuItem>
           )}
         </Toolbar>
       </AppBar>

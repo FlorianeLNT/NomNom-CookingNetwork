@@ -55,12 +55,14 @@ function PostedCard() {
       <CardMedia
         component="img"
         height="194"
-        image={"/static/images/cards/paella.jpg"}
+        image={
+          "https://www.cuisineactuelle.fr/imgre/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Fcac.2F2023.2F07.2F21.2Fd6d4f282-c01c-4ab0-99ca-2824d28e1fd2.2Ejpeg/750x562/quality/80/crop-from/center/cr/wqkgQmVyZ2Vyb24vU3VjcsOpIFNhbMOpIC8gQ3Vpc2luZSBBY3R1ZWxsZQ%3D%3D/focus-point/731%2C820/paella-traditionnelle.jpeg"
+        }
         alt="Paella dish"
       />
       <CardContent>
         <Typography variant="h5" color="text.secondary">
-          TITRE ICI{title}
+          PAËLLA{title}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -81,7 +83,26 @@ function PostedCard() {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>CONTENU:{content}</Typography>
+          <Typography paragraph>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae
+            odio saepe fuga laborum quo dolor laboriosam harum quasi aspernatur
+            vel soluta ea sapiente unde cum, assumenda ducimus, tempore ipsum
+            laudantium consequuntur error aliquid iure? Velit, repellendus
+            dolores explicabo architecto reiciendis exercitationem quia,
+            delectus, vel alias necessitatibus repudiandae ad. Ab eos rem
+            officia nostrum unde? Dolore consequuntur, ducimus quasi ut quae
+            laudantium odio nemo veniam iusto soluta eligendi officia facere
+            distinctio maiores beatae cumque culpa esse earum rerum, dignissimos
+            consequatur. Inventore, repellat! Quisquam voluptates, porro
+            reiciendis mollitia veritatis debitis omnis deleniti ipsa tempora
+            dolorem eaque est, ex libero eius voluptatum repudiandae fugit et
+            facere incidunt. Dolores non iusto eum debitis fugiat labore
+            praesentium cum excepturi. Perferendis incidunt harum quos nobis.
+            Harum commodi cumque natus earum nemo id, atque obcaecati, expedita
+            ipsum laborum voluptatum explicabo assumenda eos aperiam blanditiis
+            adipisci odit animi aliquid veritatis et accusantium porro iusto.
+            Veritatis voluptatem quas iure?{content}
+          </Typography>
         </CardContent>
       </Collapse>
     </Card>

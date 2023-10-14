@@ -20,6 +20,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Favorite from "@mui/icons-material/Favorite";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import { useState } from "react";
+import Comment from "../Comment/comment";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -165,6 +166,7 @@ function PostedCard() {
           <button onClick={handleCommentSubmit}>Commenter</button>
         </div>
       )}
+      <Comment />
     </div>
   );
 }

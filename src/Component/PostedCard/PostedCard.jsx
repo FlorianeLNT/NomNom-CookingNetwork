@@ -86,7 +86,7 @@ function PostedCard() {
         <CardContent>
           <Typography
             sx={{
-              fontSize: "1rem",
+              fontSize: "2rem",
               display: "flex",
               justifyContent: "center",
               color: "black",
@@ -122,7 +122,7 @@ function PostedCard() {
           <CardContent>
             <Typography
               sx={{
-                fontSize: "0.8rem",
+                fontSize: "1rem",
                 display: "flex",
                 textAlign: "justify",
                 color: "black",

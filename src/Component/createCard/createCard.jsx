@@ -13,6 +13,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
+import "./CreateCard.css";
 
 const steps = [
   {
@@ -170,6 +171,7 @@ function CreateCard() {
     <div>
       <NavBar />
       <Box
+        className="createCardDiv"
         sx={{
           display: "flex",
           justifyContent: "center",

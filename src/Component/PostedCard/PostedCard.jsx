@@ -15,9 +15,15 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import AddCommentIcon from "@mui/icons-material/AddComment";
+import Checkbox from "@mui/material/Checkbox";
+import Favorite from "@mui/icons-material/Favorite";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import { useState } from "react";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
+
   return <IconButton {...other} />;
 })(({ theme, expand }) => ({
   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
@@ -31,6 +37,9 @@ function PostedCard() {
   const [expanded, setExpanded] = React.useState(false);
   const [title, setTitle] = React.useState("");
   const [content, setContent] = React.useState("");
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  const [commentInputOpen, setCommentInputOpen] = useState(false);
+  const [comment, setComment] = useState("");
 
   const handleExpandClick = async () => {
     setExpanded(!expanded);
@@ -51,6 +60,16 @@ function PostedCard() {
 
     const data = await response.json();
   };
+
+  const handleCommentClick = () => {
+    setCommentInputOpen(true);
+  };
+
+  const handleCommentSubmit = () => {
+    // Traiter le commentaire ici (par exemple, l'envoyer au serveur)
+    setComment(""); // Réinitialiser l'input après soumission
+  };
+
   return (
     <div className="renderCards">
       <Card sx={{ width: "40vw", marginTop: "2vh" }}>
@@ -66,7 +85,7 @@ function PostedCard() {
         <CardContent>
           <Typography
             sx={{
-              fontSize: "3rem",
+              fontSize: "1rem",
               display: "flex",
               justifyContent: "center",
               color: "black",
@@ -78,12 +97,16 @@ function PostedCard() {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton sx={{ color: "red" }} aria-label="add to favorites">
-            <FavoriteIcon />
+          <Checkbox
+            {...label}
+            icon={<FavoriteBorder style={{ color: "red" }} />}
+            checkedIcon={<Favorite style={{ color: "red" }} />}
+          />
+
+          <IconButton onClick={handleCommentClick}>
+            <AddCommentIcon />
           </IconButton>
-          <IconButton sx={{ color: "blue" }} aria-label="comment">
-            <ShareIcon />
-          </IconButton>
+
           <ExpandMore
             sx={{ color: "black" }}
             expand={expanded}
@@ -98,7 +121,7 @@ function PostedCard() {
           <CardContent>
             <Typography
               sx={{
-                fontSize: "1.5rem",
+                fontSize: "0.8rem",
                 display: "flex",
                 textAlign: "justify",
                 color: "black",
@@ -130,7 +153,20 @@ function PostedCard() {
           </CardContent>
         </Collapse>
       </Card>
+
+      {commentInputOpen && (
+        <div className="Comment">
+          <input
+            type="text"
+            placeholder="Votre commentaire..."
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
+          <button onClick={handleCommentSubmit}>Commenter</button>
+        </div>
+      )}
     </div>
   );
 }
+
 export default PostedCard;

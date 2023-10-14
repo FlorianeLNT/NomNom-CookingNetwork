@@ -45,24 +45,27 @@ export default function MenuAppBar() {
               onClick={navigateToHome}
               variant="h6"
               component="div"
-              sx={{ fontSize: "2rem" }}
+              sx={{ fontSize: "1.3rem" }}
             >
               Accueil
             </MenuItem>
             {isAuthenticated ? (
               <>
-                <MenuItem sx={{ fontSize: "2em" }} onClick={navigateToProfil}>
+                <MenuItem
+                  sx={{ fontSize: "1.3rem" }}
+                  onClick={navigateToProfil}
+                >
                   Mon Profil
                 </MenuItem>
-                <MenuItem sx={{ fontSize: "2em" }} onClick={navigateToCard}>
+                <MenuItem sx={{ fontSize: "1.3rem" }} onClick={navigateToCard}>
                   Publier
                 </MenuItem>
-                <MenuItem sx={{ fontSize: "2em" }} onClick={handleLogout}>
+                <MenuItem sx={{ fontSize: "1.3rem" }} onClick={handleLogout}>
                   Se déconnecter
                 </MenuItem>
               </>
             ) : (
-              <MenuItem sx={{ fontSize: "2rem" }} onClick={navigateToLogin}>
+              <MenuItem sx={{ fontSize: "1.3rem" }} onClick={navigateToLogin}>
                 Se connecter
               </MenuItem>
             )}

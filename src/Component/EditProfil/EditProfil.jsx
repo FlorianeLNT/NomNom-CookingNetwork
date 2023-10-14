@@ -20,7 +20,7 @@ function EditProfil() {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "bearer" + token,
+        Authorization: "bearer " + token,
       },
       body: JSON.stringify({
         firstname: firstName,
@@ -30,7 +30,7 @@ function EditProfil() {
       }),
     };
     const response = await fetch(
-      "https://social-network-api.osc-fr1.scalingo.io/nom-nom//user",
+      "https://social-network-api.osc-fr1.scalingo.io/nom-nom/user",
       options
     );
 
@@ -42,7 +42,6 @@ function EditProfil() {
     <div>
       <NavBar />
       <Box
-        s
         sx={{
           "& .MuiTextField-root": { m: 1, width: "25ch" },
         }}

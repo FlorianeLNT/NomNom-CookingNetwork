@@ -21,7 +21,11 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="">
+      <Link
+        color="inherit"
+        href="/"
+        sx={{ color: "black", "&:hover": { color: "#921738" } }}
+      >
         Nom Nom Cooking Network
       </Link>{" "}
       {new Date().getFullYear()}
@@ -95,7 +99,11 @@ function SignUp() {
           <Avatar
             onClick={navigateToHome}
             className="avatar"
-            sx={{ m: 1, bgcolor: "#6b041f" }}
+            sx={{
+              m: 1,
+              bgcolor: "#6b041f",
+              "&:hover": { backgroundColor: "#921738" },
+            }}
           ></Avatar>
           <Typography component="h1" variant="h5">
             Créer un compte
@@ -162,7 +170,12 @@ function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, backgroundColor: "#6b041f" }}
+              sx={{
+                mt: 3,
+                mb: 2,
+                backgroundColor: "#6b041f",
+                "&:hover": { backgroundColor: "#921738" },
+              }}
             >
               Créer un compte
             </Button>
@@ -171,7 +184,12 @@ function SignUp() {
                 <Link
                   href="/login"
                   variant="body2"
-                  sx={{ color: "#6b041f", textDecoration: "none" }}
+                  sx={{
+                    color: "#6b041f",
+                    textDecoration: "none",
+                    color: "black",
+                    "&:hover": { color: "#9d0930" },
+                  }}
                 >
                   Vous avez déjà un compte ? Connectez-vous
                 </Link>

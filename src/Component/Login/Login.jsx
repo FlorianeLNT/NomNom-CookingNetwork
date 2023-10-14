@@ -21,7 +21,11 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="/">
+      <Link
+        color="inherit"
+        href="/"
+        sx={{ color: "black", "&:hover": { color: "#921738" } }}
+      >
         Nom Nom Cooking Network
       </Link>{" "}
       {new Date().getFullYear()}
@@ -94,7 +98,11 @@ function Login() {
           <Avatar
             onClick={navigateToHome}
             className="avatar"
-            sx={{ m: 1, bgcolor: "#6b041f" }}
+            sx={{
+              m: 1,
+              bgcolor: "#6b041f",
+              "&:hover": { backgroundColor: "#921738" },
+            }}
           ></Avatar>
           <Typography component="h1" variant="h5">
             Connexion
@@ -134,7 +142,12 @@ function Login() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, backgroundColor: "#6b041f" }}
+              sx={{
+                mt: 3,
+                mb: 2,
+                backgroundColor: "#6b041f",
+                "&:hover": { backgroundColor: "#921738" },
+              }}
             >
               Se connecter
             </Button>
@@ -143,7 +156,12 @@ function Login() {
                 <Link
                   href="#"
                   variant="body2"
-                  sx={{ color: "#6b041f", textDecoration: "none" }}
+                  sx={{
+                    color: "#6b041f",
+                    textDecoration: "none",
+                    color: "black",
+                    "&:hover": { color: "#921738" },
+                  }}
                 >
                   Mot de passe oublié
                 </Link>
@@ -152,7 +170,12 @@ function Login() {
                 <Link
                   href="/register"
                   variant="body2"
-                  sx={{ color: "#6b041f", textDecoration: "none" }}
+                  sx={{
+                    color: "#6b041f",
+                    textDecoration: "none",
+                    color: "black",
+                    "&:hover": { color: "#921738" },
+                  }}
                 >
                   {"Créez un compte"}
                 </Link>

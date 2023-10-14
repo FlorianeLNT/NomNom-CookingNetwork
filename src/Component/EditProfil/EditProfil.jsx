@@ -103,7 +103,15 @@ function EditProfil() {
             value={hobby}
             onChange={(e) => setHobby(e.target.value)}
           />
-          <Button className="button-save" variant="contained" onClick={edit}>
+          <Button
+            className="button-save"
+            variant="contained"
+            onClick={edit}
+            sx={{
+              backgroundColor: "#6b041f",
+              "&:hover": { backgroundColor: "#921738" },
+            }}
+          >
             Enregistrer
           </Button>
         </div>

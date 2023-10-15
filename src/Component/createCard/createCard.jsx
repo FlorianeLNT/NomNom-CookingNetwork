@@ -13,6 +13,7 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
+import "./CreateCard.css";
 
 const steps = [
   {
@@ -148,8 +149,12 @@ function CreateCard(props) {
           component="label"
           variant="contained"
           startIcon={<CloudUploadIcon />}
+          sx={{
+            backgroundColor: "#6b041f",
+            "&:hover": { backgroundColor: "#921738" },
+          }}
         >
-          Upload file
+          Choisir une image
           <VisuallyHiddenInput
             type="file"
             accept="image/*"
@@ -159,7 +164,7 @@ function CreateCard(props) {
         {selectedFile && (
           <div>
             <Typography variant="body1">
-              File selected: {selectedFile.name}
+              Image choisie : {selectedFile.name}
             </Typography>
           </div>
         )}
@@ -170,7 +175,14 @@ function CreateCard(props) {
   return (
     <div>
       <NavBar />
-      <Box sx={{ maxWidth: 400 }}>
+      <Box
+        className="createCardDiv"
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "10vh",
+        }}
+      >
         <Stepper activeStep={activeStep} orientation="vertical">
           {steps.map((step, index) => (
             <Step key={step.label}>
@@ -191,14 +203,24 @@ function CreateCard(props) {
                     <Button
                       variant="contained"
                       onClick={handleNext}
-                      sx={{ mt: 1, mr: 1 }}
+                      sx={{
+                        mt: 1,
+                        mr: 1,
+                        backgroundColor: "#6b041f",
+                        "&:hover": { backgroundColor: "#921738" },
+                      }}
                     >
                       {index === steps.length - 1 ? "Terminer" : "Continuer"}
                     </Button>
                     <Button
                       disabled={index === 0}
                       onClick={handleBack}
-                      sx={{ mt: 1, mr: 1 }}
+                      sx={{
+                        mt: 1,
+                        mr: 1,
+                        color: "#6b041f",
+                        "&:hover": { color: "#921738" },
+                      }}
                     >
                       Retour
                     </Button>
@@ -215,12 +237,25 @@ function CreateCard(props) {
               onClick={handlePublish}
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{
+                mt: 3,
+                mb: 2,
+                backgroundColor: "#6b041f",
+                "&:hover": { backgroundColor: "#921738" },
+              }}
             >
               Publier
             </Button>
             <Typography variant="body1">{message}</Typography>
-            <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
+            <Button
+              onClick={handleReset}
+              sx={{
+                mt: 1,
+                mr: 1,
+                color: "#6b041f",
+                "&:hover": { color: "#921738" },
+              }}
+            >
               Réinitialiser
             </Button>
           </Paper>

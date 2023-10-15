@@ -3,4 +3,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction:column
+}
+
+.Comment{
+  display: flex;
+  flex-direction:column
 }

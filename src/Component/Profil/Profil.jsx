@@ -1,6 +1,5 @@
 import "./Profil.css";
 import Button from "@mui/material/Button";
-import EditProfil from "../EditProfil/EditProfil";
 import NavBar from "../NavBar/NavBar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -43,6 +42,10 @@ function Profil(props) {
               className="button-modifier"
               variant="contained"
               onClick={navigateToEditProfil}
+              sx={{
+                backgroundColor: "#6b041f",
+                "&:hover": { backgroundColor: "#921738" },
+              }}
             >
               Modifier
             </Button>

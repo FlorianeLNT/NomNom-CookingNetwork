@@ -38,7 +38,7 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 
-function CreateCard() {
+function CreateCard(props) {
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = React.useState(0);
   const [selectedFile, setSelectedFile] = React.useState(null);
@@ -66,7 +66,7 @@ function CreateCard() {
             Authorization: "Bearer " + token,
           },
           body: JSON.stringify({
-            image: image,
+            // image: image,
             title: title,
             content: content,
           }),
@@ -103,6 +103,7 @@ function CreateCard() {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
+    console.log("image", file);
   };
 
   const CreateCard = (step, index) => {
@@ -111,15 +112,18 @@ function CreateCard() {
     }
     if (index === 1) {
       return (
-        <TextField
-          className="text"
-          id="outlined-multiline-static"
-          label={step.label}
-          multiline
-          rows={4}
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+        <div>
+          <TextField
+            className="text"
+            id="outlined-multiline-static"
+            label={step.label}
+            multiline
+            rows={4}
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            defaultValue={props.title}
+          />
+        </div>
       );
     } else {
       return (
@@ -131,6 +135,7 @@ function CreateCard() {
           rows={4}
           value={content}
           onChange={(e) => setContent(e.target.value)}
+          defaultValue={props.content}
         />
       );
     }

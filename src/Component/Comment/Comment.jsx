@@ -1,7 +1,9 @@
 import "./Comment.css";
+import { useState } from "react";
+const [comments, setComments] = [];
 
 function Comment() {
-  return <div>Comment</div>;
+  return <div>{comments}</div>;
 }
 
 export default Comment;

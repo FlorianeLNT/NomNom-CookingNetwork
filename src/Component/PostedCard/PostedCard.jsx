@@ -36,6 +36,7 @@ function PostedCard() {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [commentInputOpen, setCommentInputOpen] = useState(false);
   const [comment, setComment] = useState("");
+  const [postIdToComment, setPostIdToComment] = useState("");
 
   const handleExpandClick = async () => {
     setExpanded(!expanded);
@@ -58,12 +59,35 @@ function PostedCard() {
     console.log(apiData);
   };
 
-  const handleCommentClick = () => {
+  const handleCommentClick = (postId) => {
     setCommentInputOpen(true);
+    setPostIdToComment(postId);
   };
 
-  const handleCommentSubmit = () => {
-    setComment("");
+  const handleCommentSubmit = async () => {
+    try {
+      const response = await fetch(
+        `https://social-network-api.osc-fr1.scalingo.io/nom-nom/post/comment`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "bearer " + token,
+          },
+          body: JSON.stringify({
+            postId: postIdToComment,
+            content: comment,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Erreur de réseau - ${response.status}`);
+      }
+      api();
+    } catch (error) {
+      console.error("Erreur lors de la soumission du commentaire : " + error);
+    }
   };
 
   React.useEffect(() => {
@@ -73,10 +97,9 @@ function PostedCard() {
   return (
     <div className="renderCards">
       {apiData?.map((item, index) => {
-        console.log(item);
         return (
           <>
-            <Card key={index} sx={{ width: "40vw", marginTop: "2vh" }}>
+            <Card key={index} sx={{ width: "40vw", marginTop: "4vh" }}>
               <CardMedia
                 sx={{ height: "40vh" }}
                 component="img"
@@ -104,8 +127,7 @@ function PostedCard() {
                   icon={<FavoriteBorder style={{ color: "red" }} />}
                   checkedIcon={<Favorite style={{ color: "red" }} />}
                 />
-
-                <IconButton onClick={handleCommentClick}>
+                <IconButton onClick={() => handleCommentClick(item._id)}>
                   <AddCommentIcon />
                 </IconButton>
                 <ExpandMore
@@ -132,23 +154,27 @@ function PostedCard() {
                     {item.content}
                   </Typography>
                 </CardContent>
+                <div className="comments">
+                  {item.comments.map((comment, commentIndex) => (
+                    <Comment key={commentIndex} content={comment.content} />
+                  ))}
+                </div>
               </Collapse>
             </Card>
-            {commentInputOpen && (
-              <div className="Comment">
-                <input
-                  type="text"
-                  placeholder="Votre commentaire..."
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                />
-                <button onClick={handleCommentSubmit}>Commenter</button>
-              </div>
-            )}
-            <Comment />
           </>
         );
       })}
+      {commentInputOpen && (
+        <div className="Comment">
+          <input
+            type="text"
+            placeholder="Votre commentaire..."
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
+          <button onClick={handleCommentSubmit}>Commenter</button>
+        </div>
+      )}
     </div>
   );
 }

@@ -63,6 +63,30 @@ function PostedCard() {
     setCommentInputOpen(true);
     setPostIdToComment(postId);
   };
+  const handleCheckedIcon = async (postId) => {
+    try {
+      const response = await fetch(
+        `https://social-network-api.osc-fr1.scalingo.io/nom-nom/post/like`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "bearer " + token,
+          },
+          body: JSON.stringify({
+            postId: postId,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Erreur de réseau - ${response.status}`);
+      }
+      api();
+    } catch (error) {
+      console.error("Erreur lors de la soumission du commentaire : " + error);
+    }
+  };
 
   const handleCommentSubmit = async (postId) => {
     try {
@@ -126,7 +150,9 @@ function PostedCard() {
                   {...label}
                   icon={<FavoriteBorder style={{ color: "red" }} />}
                   checkedIcon={<Favorite style={{ color: "red" }} />}
+                  onClick={() => handleCheckedIcon(item.id)}
                 />
+                <span>{item.likes.length}</span>
                 <IconButton onClick={() => handleCommentClick(item._id)}>
                   <AddCommentIcon />
                 </IconButton>

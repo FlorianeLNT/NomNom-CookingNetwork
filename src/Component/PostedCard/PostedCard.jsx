@@ -37,29 +37,6 @@ function PostedCard() {
   const [commentInputOpen, setCommentInputOpen] = useState(false);
   const [comment, setComment] = useState("");
 
-  const deletePost = async (postId, token) => {
-    try {
-      const response = await fetch(
-        `https://social-network-api.osc-fr1.scalingo.io/nom-nom/posts/${postId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error(`Erreur de réseau - ${response.status}`);
-      }
-
-      console.log(`Post avec l'ID ${postId} supprimé avec succès.`);
-    } catch (error) {
-      console.error("Erreur lors de la suppression du post : " + error);
-    }
-  };
-
   const handleExpandClick = async () => {
     setExpanded(!expanded);
   };
@@ -124,16 +101,6 @@ function PostedCard() {
                 </Typography>
               </CardContent>
               <CardActions disableSpacing>
-                <IconButton sx={{ color: "blue" }} aria-label="comment">
-                  <ShareIcon />
-                </IconButton>
-                <IconButton
-                  sx={{ color: "#6b041f" }}
-                  aria-label="delete"
-                  onClick={() => deletePost(item._id, token)}
-                >
-                  <DeleteIcon />
-                </IconButton>
                 <ExpandMore
                   sx={{ color: "black" }}
                   expand={expanded}

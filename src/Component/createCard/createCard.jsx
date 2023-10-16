@@ -183,87 +183,89 @@ function CreateCard(props) {
           marginTop: "10vh",
         }}
       >
-        <Stepper
-          className="stepCard"
-          activeStep={activeStep}
-          orientation="vertical"
-        >
-          {steps.map((step, index) => (
-            <Step key={step.label}>
-              <StepLabel
-                optional={
-                  index === 2 ? (
-                    <Typography variant="caption">Dernière étape</Typography>
-                  ) : null
-                }
+        <div className="mamie">
+          <Stepper
+            className="stepCard"
+            activeStep={activeStep}
+            orientation="vertical"
+          >
+            {steps.map((step, index) => (
+              <Step key={step.label}>
+                <StepLabel
+                  optional={
+                    index === 2 ? (
+                      <Typography variant="caption">Dernière étape</Typography>
+                    ) : null
+                  }
+                >
+                  {step.label}
+                </StepLabel>
+                <StepContent>
+                  <Typography>{step.description}</Typography>
+                  <Box sx={{ mb: 2 }}>
+                    <div className="parent">
+                      {CreateCard(step, index)}
+                      <Button
+                        variant="contained"
+                        onClick={handleNext}
+                        sx={{
+                          mt: 1,
+                          mr: 1,
+                          backgroundColor: "#6b041f",
+                          "&:hover": { backgroundColor: "#921738" },
+                        }}
+                      >
+                        {index === steps.length - 1 ? "Terminer" : "Continuer"}
+                      </Button>
+                      <Button
+                        disabled={index === 0}
+                        onClick={handleBack}
+                        sx={{
+                          mt: 1,
+                          mr: 1,
+                          color: "#6b041f",
+                          "&:hover": { color: "#921738" },
+                        }}
+                      >
+                        Retour
+                      </Button>
+                    </div>
+                  </Box>
+                </StepContent>
+              </Step>
+            ))}
+          </Stepper>
+          {activeStep === steps.length && (
+            <Paper square elevation={0} sx={{ p: 3 }}>
+              <Button
+                type="submit"
+                onClick={handlePublish}
+                fullWidth
+                variant="contained"
+                sx={{
+                  mt: 3,
+                  mb: 2,
+                  backgroundColor: "#6b041f",
+                  "&:hover": { backgroundColor: "#921738" },
+                }}
               >
-                {step.label}
-              </StepLabel>
-              <StepContent>
-                <Typography>{step.description}</Typography>
-                <Box sx={{ mb: 2 }}>
-                  <div>
-                    {CreateCard(step, index)}
-                    <Button
-                      variant="contained"
-                      onClick={handleNext}
-                      sx={{
-                        mt: 1,
-                        mr: 1,
-                        backgroundColor: "#6b041f",
-                        "&:hover": { backgroundColor: "#921738" },
-                      }}
-                    >
-                      {index === steps.length - 1 ? "Terminer" : "Continuer"}
-                    </Button>
-                    <Button
-                      disabled={index === 0}
-                      onClick={handleBack}
-                      sx={{
-                        mt: 1,
-                        mr: 1,
-                        color: "#6b041f",
-                        "&:hover": { color: "#921738" },
-                      }}
-                    >
-                      Retour
-                    </Button>
-                  </div>
-                </Box>
-              </StepContent>
-            </Step>
-          ))}
-        </Stepper>
-        {activeStep === steps.length && (
-          <Paper square elevation={0} sx={{ p: 3, backgroundColor: "#f4cb9e" }}>
-            <Button
-              type="submit"
-              onClick={handlePublish}
-              fullWidth
-              variant="contained"
-              sx={{
-                mt: 3,
-                mb: 2,
-                backgroundColor: "#6b041f",
-                "&:hover": { backgroundColor: "#921738" },
-              }}
-            >
-              Publier
-            </Button>
-            <Typography variant="body1">{message}</Typography>
-            <Button
-              onClick={handleReset}
-              sx={{
-                mt: 1,
-                mr: 1,
-                color: "#6b041f",
-                "&:hover": { color: "#921738" },
-              }}
-            >
-              Réinitialiser
-            </Button>
-          </Paper>
-        )}
+                Publier
+              </Button>
+              <Typography variant="body1">{message}</Typography>
+              <Button
+                onClick={handleReset}
+                sx={{
+                  mt: 1,
+                  mr: 1,
+                  color: "#6b041f",
+                  "&:hover": { color: "#921738" },
+                }}
+              >
+                Réinitialiser
+              </Button>
+            </Paper>
+          )}
+        </div>
       </Box>
     </div>
   );

@@ -120,7 +120,7 @@ function PostedCard() {
           },
           body: JSON.stringify({
             postId: postId,
-            content: comment,
+            content: postIdToComment,
           }),
         }
       );
@@ -174,13 +174,13 @@ function PostedCard() {
                 />
                 <span>{item.likes.length}</span>
 
-                <Button
-                  onClick={() => {
-                    handleOpen();
-                    handleCommentClick(item._id);
-                  }}
-                >
-                  <AddCommentIcon />
+                <Button>
+                  <AddCommentIcon
+                    onClick={() => {
+                      handleCommentClick(item._id);
+                      handleOpen();
+                    }}
+                  />
                   <Modal
                     className="modal"
                     open={open}

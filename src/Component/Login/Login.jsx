@@ -65,22 +65,15 @@ function Login() {
     );
 
     const data = await response.json();
+    console.log(data);
 
-    if (response.status === 401) {
-      setMessage("Email ou mot de passe incorrect");
-      return;
-    }
-
-    if (response.status !== 200) {
-      setMessage("Une erreur s'est produite");
-      return;
-    }
-
-    if (response.status === 200) {
+    if (data.success === true) {
       const token = data.token;
       localStorage.setItem("token", token);
+      navigateToHome();
+    } else {
+      setMessage(data.message);
     }
-    navigateToHome();
   };
 
   return (

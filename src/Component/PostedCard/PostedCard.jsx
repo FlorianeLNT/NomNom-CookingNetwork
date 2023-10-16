@@ -20,6 +20,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
+import { Rotate90DegreesCcwRounded } from "@mui/icons-material";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -46,6 +47,7 @@ const style = {
 
 function PostedCard() {
   const [expanded, setExpanded] = React.useState(false);
+  const [expandedComment, setExpandedComment] = React.useState(false);
   const [title, setTitle] = React.useState("");
   const [content, setContent] = React.useState("");
   const [apiData, setApiData] = React.useState([]);
@@ -60,6 +62,9 @@ function PostedCard() {
 
   const handleExpandClick = async () => {
     setExpanded(!expanded);
+  };
+  const handleExpandClickComment = async () => {
+    setExpandedComment(!expandedComment);
   };
 
   const api = async () => {
@@ -223,7 +228,6 @@ function PostedCard() {
                     </Box>
                   </Modal>
                 </Button>
-                <span>{item.comments.length}</span>
                 <ExpandMore
                   sx={{ color: "black" }}
                   expand={expanded}
@@ -231,6 +235,7 @@ function PostedCard() {
                   aria-expanded={expanded}
                   aria-label="show more"
                 >
+                  <p>Voir la recette</p>
                   <ExpandMoreIcon />
                 </ExpandMore>
               </CardActions>
@@ -254,6 +259,29 @@ function PostedCard() {
                   ))}
                 </div>
               </Collapse>
+              <div>
+                <CardActions>
+                  <ExpandMore
+                    sx={{ color: "black" }}
+                    expand={expandedComment}
+                    onClick={handleExpandClickComment}
+                    aria-expanded={expandedComment}
+                    aria-label="show more"
+                  >
+                    <p>{item.comments.length} commentaire(s)</p>
+                    <ExpandMoreIcon />
+                  </ExpandMore>
+                </CardActions>
+                <Collapse in={expandedComment} timeout="auto" unmountOnExit>
+                  <div>
+                    Praesentium explicabo commodi, repellat, dolor aliquam
+                    beatae, eveniet nihil quia soluta blanditiis dolorum totam!
+                    Itaque nam voluptatem soluta est similique, voluptatibus aut
+                    impedit ex error quas laborum veniam fugit quis quidem nemo
+                    ad. Debitis quas possimus molestias unde.
+                  </div>
+                </Collapse>
+              </div>
             </Card>
           </div>
         );

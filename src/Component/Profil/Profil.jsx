@@ -1,36 +1,58 @@
 import "./Profil.css";
 import Button from "@mui/material/Button";
 import NavBar from "../NavBar/NavBar";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-function Profil(props) {
-  const [email, setEmail] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+function Profil() {
+  const [userInfo, setUserInfo] = useState({});
   const navigate = useNavigate();
+
   const navigateToEditProfil = () => {
     navigate("/editingprofil");
   };
-  async function userData() {
+
+  const navigateToLogin = () => {
+    navigate("/login");
+  };
+
+  const navigateToProfil = () => {
+    navigate("/profil");
+  };
+
+  const userToken = localStorage.getItem("token");
+
+  if (!userToken) {
+    navigateToProfil();
+    return;
+  }
+
+  async function getUserData() {
     const options = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${userToken}`,
       },
-      body: JSON.stringify({
-        email: email,
-        firstname: firstName,
-        lastname: lastName,
-      }),
     };
+
     const response = await fetch(
       "https://social-network-api.osc-fr1.scalingo.io/nom-nom/user",
       options
     );
 
-    const data = await response.json();
+    if (response.ok) {
+      const data = await response.json();
+      setUserInfo(data);
+    } else {
+      navigateToLogin();
+    }
   }
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
   return (
     <>
       <NavBar />
@@ -50,14 +72,15 @@ function Profil(props) {
               Modifier
             </Button>
           </h1>
-          <p>Prénom : {props.firstName}</p>
-          <p>Nom : {props.lastName} </p>
-          <p>Email : {props.email}</p>
-          <p>Âge : {props.age}</p>
-          <p>Hobby: {props.hobby}</p>
+          <p>Prénom : {userInfo.firstname}</p>
+          <p>Nom : {userInfo.lastname} </p>
+          <p>Email : {userInfo.email}</p>
+          <p>Age :</p>
+          <p>Occupation :</p>
         </div>
       </div>
     </>
   );
 }
+
 export default Profil;

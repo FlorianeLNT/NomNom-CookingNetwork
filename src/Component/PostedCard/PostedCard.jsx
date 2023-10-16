@@ -64,7 +64,7 @@ function PostedCard() {
     setPostIdToComment(postId);
   };
 
-  const handleCommentSubmit = async () => {
+  const handleCommentSubmit = async (postId) => {
     try {
       const response = await fetch(
         `https://social-network-api.osc-fr1.scalingo.io/nom-nom/post/comment`,
@@ -75,7 +75,7 @@ function PostedCard() {
             Authorization: "bearer " + token,
           },
           body: JSON.stringify({
-            postId: postIdToComment,
+            postId: postId,
             content: comment,
           }),
         }
@@ -98,8 +98,8 @@ function PostedCard() {
     <div className="renderCards">
       {apiData?.map((item, index) => {
         return (
-          <>
-            <Card key={index} sx={{ width: "40vw", marginTop: "4vh" }}>
+          <div key={index}>
+            <Card sx={{ width: "40vw", marginTop: "4vh" }}>
               <CardMedia
                 sx={{ height: "40vh" }}
                 component="img"
@@ -130,6 +130,7 @@ function PostedCard() {
                 <IconButton onClick={() => handleCommentClick(item._id)}>
                   <AddCommentIcon />
                 </IconButton>
+                <span>{item.comments.length}</span>
                 <ExpandMore
                   sx={{ color: "black" }}
                   expand={expanded}
@@ -161,7 +162,7 @@ function PostedCard() {
                 </div>
               </Collapse>
             </Card>
-          </>
+          </div>
         );
       })}
       {commentInputOpen && (

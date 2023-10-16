@@ -80,9 +80,9 @@ function PostedCard() {
   };
 
   const handleCommentClick = (postId) => {
-    setCommentInputOpen(true);
     setPostIdToComment(postId);
   };
+
   const handleCheckedIcon = async (postId) => {
     try {
       const response = await fetch(
@@ -174,8 +174,13 @@ function PostedCard() {
                 />
                 <span>{item.likes.length}</span>
 
-                <Button>
-                  <AddCommentIcon onClick={handleOpen} />
+                <Button
+                  onClick={() => {
+                    handleOpen();
+                    handleCommentClick(item._id);
+                  }}
+                >
+                  <AddCommentIcon />
                   <Modal
                     className="modal"
                     open={open}

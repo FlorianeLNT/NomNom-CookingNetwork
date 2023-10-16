@@ -33,3 +33,8 @@
   color: black !important;
   font-weight: 500;
 }
+
+.css-n4qzfg-MuiPaper-root-MuiCard-root {
+  color: green;
+  font-size: 1.5rem;
+}

@@ -3,10 +3,33 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction:column
+  flex-direction: column;
 }
 
-.Comment{
+.Comment {
   display: flex;
-  flex-direction:column
+  flex-direction: column;
+}
+
+.css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.css-1wnsr1i {
+  border-radius: 30px;
+  border: 5px solid #6b041f !important;
+}
+
+.css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root {
+  border: 2px solid #6b041f !important;
+}
+
+.css-i4bv87-MuiSvgIcon-root {
+  color: #6b041f !important;
+}
+
+.css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root {
+  background-color: white !important;
+  color: black !important;
+  font-weight: 500;
 }

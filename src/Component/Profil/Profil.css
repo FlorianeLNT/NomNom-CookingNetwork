@@ -4,6 +4,15 @@
   align-items: center;
   margin-top: 10vh;
   gap: 50px;
-  background-color: #f4cb9e;
   padding: 5vh;
+  font-size: 1.5rem;
+}
+
+.profilCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2vh;
+  border: 10px solid #f4cb9e;
+  width: 25vw;
 }

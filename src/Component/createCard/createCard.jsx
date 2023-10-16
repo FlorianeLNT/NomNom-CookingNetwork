@@ -183,7 +183,11 @@ function CreateCard(props) {
           marginTop: "10vh",
         }}
       >
-        <Stepper activeStep={activeStep} orientation="vertical">
+        <Stepper
+          className="stepCard"
+          activeStep={activeStep}
+          orientation="vertical"
+        >
           {steps.map((step, index) => (
             <Step key={step.label}>
               <StepLabel

@@ -58,8 +58,13 @@ function Profil() {
       <NavBar />
       <div className="my-profile">
         <div className="profil-info">
-          <h1>
-            Mon Profil :{" "}
+          <div className="profilCard">
+            <h3>Mon Profil : </h3>
+            <p>Prénom : {userInfo.firstname}</p>
+            <p>Nom : {userInfo.lastname} </p>
+            <p>Email : {userInfo.email}</p>
+            <p>Age :</p>
+            <p>Occupation :</p>
             <Button
               className="button-modifier"
               variant="contained"
@@ -71,12 +76,7 @@ function Profil() {
             >
               Modifier
             </Button>
-          </h1>
-          <p>Prénom : {userInfo.firstname}</p>
-          <p>Nom : {userInfo.lastname} </p>
-          <p>Email : {userInfo.email}</p>
-          <p>Age :</p>
-          <p>Occupation :</p>
+          </div>
         </div>
       </div>
     </>

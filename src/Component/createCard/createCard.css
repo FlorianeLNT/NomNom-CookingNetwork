@@ -1,11 +1,18 @@
 .createCardDiv {
   margin-top: 10vh;
   gap: 50px;
-  background-color: #f4cb9e;
   padding: 5vh;
   height: 40vh;
 }
 
-.css-1di5t78-MuiPaper-root {
-  background-color: #f4cb9e;
+.stepCard {
+  padding: 2vh;
+  border: 10px solid #f4cb9e;
+}
+.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
+  color: #6b041f !important;
+}
+
+.css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root {
+  margin-right: 1vw;
 }

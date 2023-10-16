@@ -19,6 +19,7 @@ import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import SendIcon from "@mui/icons-material/Send";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -173,10 +174,10 @@ function PostedCard() {
                 />
                 <span>{item.likes.length}</span>
 
-                {/* Commentaire */}
-                <IconButton onClick={() => handleCommentClick(item._id)}>
+                <Button>
                   <AddCommentIcon onClick={handleOpen} />
                   <Modal
+                    className="modal"
                     open={open}
                     onClose={handleClose}
                     aria-labelledby="modal-modal-title"
@@ -188,7 +189,7 @@ function PostedCard() {
                         variant="h6"
                         component="h2"
                       >
-                        Ajouté un commentaire:
+                        Ajouter un commentaire :
                       </Typography>
                       <Box
                         component="form"
@@ -201,17 +202,22 @@ function PostedCard() {
                         <div>
                           <TextField
                             id="outlined-multiline-static"
-                            label="Multiline"
+                            label=""
                             multiline
                             rows={10}
-                            defaultValue="Default Value"
+                            defaultValue=""
+                            onChange={(e) => setComment(e.target.value)}
                           />
-                          <Button variant="contained">Envoyer</Button>
+                          <IconButton
+                            onClick={() => handleCommentSubmit(item._id)}
+                          >
+                            <SendIcon />
+                          </IconButton>
                         </div>
                       </Box>
                     </Box>
                   </Modal>
-                </IconButton>
+                </Button>
                 <span>{item.comments.length}</span>
                 <ExpandMore
                   sx={{ color: "black" }}
@@ -247,17 +253,6 @@ function PostedCard() {
           </div>
         );
       })}
-      {commentInputOpen && (
-        <div className="Comment">
-          <input
-            type="text"
-            placeholder="Votre commentaire..."
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-          />
-          <button onClick={handleCommentSubmit}>Commenter</button>
-        </div>
-      )}
     </div>
   );
 }

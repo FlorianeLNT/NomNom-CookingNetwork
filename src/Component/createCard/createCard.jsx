@@ -9,16 +9,16 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { styled } from "@mui/material/styles";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+// import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import "./CreateCard.css";
 
 const steps = [
-  {
-    label: "Choisissez votre image",
-  },
+  // {
+  //   label: "Choisissez votre image",
+  // },
   {
     label: "Définissez un titre",
   },
@@ -108,9 +108,9 @@ function CreateCard(props) {
   };
 
   const CreateCard = (step, index) => {
-    if (index === 0) {
-      return <InputFileUpload />;
-    }
+    // if (index === 0) {
+    //   return <InputFileUpload />;
+    // }
     if (index === 1) {
       return (
         <div>
@@ -142,35 +142,35 @@ function CreateCard(props) {
     }
   };
 
-  const InputFileUpload = () => {
-    return (
-      <div>
-        <Button
-          component="label"
-          variant="contained"
-          startIcon={<CloudUploadIcon />}
-          sx={{
-            backgroundColor: "#6b041f",
-            "&:hover": { backgroundColor: "#921738" },
-          }}
-        >
-          Choisir une image
-          <VisuallyHiddenInput
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-          />
-        </Button>
-        {selectedFile && (
-          <div>
-            <Typography variant="body1">
-              Image choisie : {selectedFile.name}
-            </Typography>
-          </div>
-        )}
-      </div>
-    );
-  };
+  // const InputFileUpload = () => {
+  //   return (
+  //     <div>
+  //       <Button
+  //         component="label"
+  //         variant="contained"
+  //         startIcon={<CloudUploadIcon />}
+  //         sx={{
+  //           backgroundColor: "#6b041f",
+  //           "&:hover": { backgroundColor: "#921738" },
+  //         }}
+  //       >
+  //         Choisir une image
+  //         <VisuallyHiddenInput
+  //           type="file"
+  //           accept="image/*"
+  //           onChange={handleFileChange}
+  //         />
+  //       </Button>
+  //       {selectedFile && (
+  //         <div>
+  //           <Typography variant="body1">
+  //             Image choisie : {selectedFile.name}
+  //           </Typography>
+  //         </div>
+  //       )}
+  //     </div>
+  //   );
+  // };
 
   return (
     <div>
@@ -231,7 +231,7 @@ function CreateCard(props) {
           ))}
         </Stepper>
         {activeStep === steps.length && (
-          <Paper square elevation={0} sx={{ p: 3 }}>
+          <Paper square elevation={0} sx={{ p: 3, backgroundColor: "#f4cb9e" }}>
             <Button
               type="submit"
               onClick={handlePublish}

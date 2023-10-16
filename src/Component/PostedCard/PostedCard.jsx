@@ -11,9 +11,10 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useState } from "react";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -31,6 +32,30 @@ function PostedCard() {
   const [title, setTitle] = React.useState("");
   const [content, setContent] = React.useState("");
   const [apiData, setApiData] = React.useState([]);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+  const deletePost = async (postId, token) => {
+    try {
+      const response = await fetch(
+        `https://social-network-api.osc-fr1.scalingo.io/nom-nom/posts/${postId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Erreur de réseau - ${response.status}`);
+      }
+
+      console.log(`Post avec l'ID ${postId} supprimé avec succès.`);
+    } catch (error) {
+      console.error("Erreur lors de la suppression du post : " + error);
+    }
+  };
 
   const handleExpandClick = async () => {
     setExpanded(!expanded);
@@ -89,6 +114,13 @@ function PostedCard() {
             <CardActions disableSpacing>
               <IconButton sx={{ color: "blue" }} aria-label="comment">
                 <ShareIcon />
+              </IconButton>
+              <IconButton
+                sx={{ color: "#6b041f" }}
+                aria-label="delete"
+                onClick={() => deletePost(item._id, token)}
+              >
+                <DeleteIcon />
               </IconButton>
               <ExpandMore
                 sx={{ color: "black" }}

@@ -111,7 +111,7 @@ function CreateCard(props) {
     // if (index === 0) {
     //   return <InputFileUpload />;
     // }
-    if (index === 1) {
+    if (index === 0) {
       return (
         <div>
           <TextField

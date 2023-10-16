@@ -119,8 +119,8 @@ function PostedCard() {
             Authorization: "bearer " + token,
           },
           body: JSON.stringify({
-            postId: postId,
-            content: postIdToComment,
+            postId: postIdToComment,
+            content: comment,
           }),
         }
       );

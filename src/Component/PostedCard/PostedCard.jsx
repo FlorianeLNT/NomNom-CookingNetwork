@@ -15,6 +15,10 @@ import Favorite from "@mui/icons-material/Favorite";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import { useState } from "react";
 import Comment from "../Comment/comment";
+import Modal from "@mui/material/Modal";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -27,6 +31,18 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
+
 function PostedCard() {
   const [expanded, setExpanded] = React.useState(false);
   const [title, setTitle] = React.useState("");
@@ -37,6 +53,9 @@ function PostedCard() {
   const [commentInputOpen, setCommentInputOpen] = useState(false);
   const [comment, setComment] = useState("");
   const [postIdToComment, setPostIdToComment] = useState("");
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleExpandClick = async () => {
     setExpanded(!expanded);
@@ -150,11 +169,48 @@ function PostedCard() {
                   {...label}
                   icon={<FavoriteBorder style={{ color: "red" }} />}
                   checkedIcon={<Favorite style={{ color: "red" }} />}
-                  onClick={() => handleCheckedIcon(item.id)}
+                  onClick={() => handleCheckedIcon(item._id)}
                 />
                 <span>{item.likes.length}</span>
+
+                {/* Commentaire */}
                 <IconButton onClick={() => handleCommentClick(item._id)}>
-                  <AddCommentIcon />
+                  <AddCommentIcon onClick={handleOpen} />
+                  <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                  >
+                    <Box sx={style}>
+                      <Typography
+                        id="modal-modal-title"
+                        variant="h6"
+                        component="h2"
+                      >
+                        Ajouté un commentaire:
+                      </Typography>
+                      <Box
+                        component="form"
+                        sx={{
+                          "& .MuiTextField-root": { m: 1, width: "25ch" },
+                        }}
+                        noValidate
+                        autoComplete="off"
+                      >
+                        <div>
+                          <TextField
+                            id="outlined-multiline-static"
+                            label="Multiline"
+                            multiline
+                            rows={10}
+                            defaultValue="Default Value"
+                          />
+                          <Button variant="contained">Envoyer</Button>
+                        </div>
+                      </Box>
+                    </Box>
+                  </Modal>
                 </IconButton>
                 <span>{item.comments.length}</span>
                 <ExpandMore

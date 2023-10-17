@@ -60,3 +60,12 @@
 .css-1wnsr1i {
   box-shadow: 0px 2px 13px -8px rgba(0, 0, 0, 0.2) !important;
 }
+
+.comments {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  padding-left: 2vh;
+  padding-bottom: 2vh;
+  padding-right: 2vh;
+}

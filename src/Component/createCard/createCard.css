@@ -9,6 +9,10 @@
   color: #6b041f !important;
 }
 
+.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
+  color: #6b041f !important;
+}
+
 .css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root {
   margin-right: 1vw;
 }
@@ -22,8 +26,26 @@
 .mamie {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding-top: 6vh;
+  /* padding-top: 6vh; */
   width: 25vw;
   border: 10px solid #f4cb9e;
+}
+
+.text {
+  width: 20vw;
+}
+
+.css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input {
+  height: 15vh !important;
+}
+
+.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+  color: #6b041f !important;
+}
+
+.css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+  border-color: #6b041f !important;
 }

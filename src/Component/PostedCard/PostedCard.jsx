@@ -205,7 +205,7 @@ function PostedCard() {
                       <Box
                         component="form"
                         sx={{
-                          "& .MuiTextField-root": { m: 1, width: "25ch" },
+                          "& .MuiTextField-root": { m: 1, width: "50ch" },
                         }}
                         noValidate
                         autoComplete="off"

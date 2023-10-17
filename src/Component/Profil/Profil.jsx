@@ -63,8 +63,8 @@ function Profil() {
             <p>Prénom : {userInfo.firstname}</p>
             <p>Nom : {userInfo.lastname} </p>
             <p>Email : {userInfo.email}</p>
-            <p>Age :</p>
-            <p>Occupation :</p>
+            <p>Âge : {userInfo.age}</p>
+            <p>Occupation : {userInfo.occupation}</p>
             <Button
               className="button-modifier"
               variant="contained"

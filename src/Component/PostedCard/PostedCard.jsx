@@ -21,6 +21,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
 import { Rotate90DegreesCcwRounded } from "@mui/icons-material";
+import { Add } from "@mui/icons-material";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -228,16 +229,18 @@ function PostedCard() {
                     </Box>
                   </Modal>
                 </Button>
-                <ExpandMore
-                  sx={{ color: "black" }}
-                  expand={expanded}
-                  onClick={handleExpandClick}
-                  aria-expanded={expanded}
-                  aria-label="show more"
-                >
+                <div className="recette">
                   <p>Voir la recette</p>
-                  <ExpandMoreIcon />
-                </ExpandMore>
+                  <ExpandMore
+                    sx={{ color: "black" }}
+                    expand={expanded}
+                    onClick={handleExpandClick}
+                    aria-expanded={expanded}
+                    aria-label="show more"
+                  >
+                    <ExpandMoreIcon />
+                  </ExpandMore>
+                </div>
               </CardActions>
               <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
@@ -261,16 +264,18 @@ function PostedCard() {
               </Collapse>
               <div>
                 <CardActions>
-                  <ExpandMore
-                    sx={{ color: "black" }}
-                    expand={expandedComment}
-                    onClick={handleExpandClickComment}
-                    aria-expanded={expandedComment}
-                    aria-label="show more"
-                  >
+                  <div className="commentaires">
                     <p>{item.comments.length} commentaire(s)</p>
-                    <ExpandMoreIcon />
-                  </ExpandMore>
+                    <ExpandMore
+                      sx={{ color: "black" }}
+                      expand={expandedComment}
+                      onClick={handleExpandClickComment}
+                      aria-expanded={expandedComment}
+                      aria-label="show more"
+                    >
+                      <ExpandMoreIcon />
+                    </ExpandMore>
+                  </div>
                 </CardActions>
                 <Collapse in={expandedComment} timeout="auto" unmountOnExit>
                   <div>

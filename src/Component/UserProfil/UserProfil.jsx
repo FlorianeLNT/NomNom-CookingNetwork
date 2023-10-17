@@ -59,22 +59,11 @@ function UserProfil() {
 
     return (
       <div className="profilCard">
-        <h3>Mon Profil : </h3>
+        <h3>Informations sur l'utilisateur : </h3>
         <p>Prénom : {firstname}</p>
         <p>Nom : {lastname}</p>
         {age && <p>Âge : {age} ans</p>}
         {occupation && <p>Occupation : {occupation}</p>}
-        <Button
-          className="button-modifier"
-          variant="contained"
-          onClick={navigateToEditProfil}
-          sx={{
-            backgroundColor: "#6b041f",
-            "&:hover": { backgroundColor: "#921738" },
-          }}
-        >
-          Modifier
-        </Button>
       </div>
     );
   };

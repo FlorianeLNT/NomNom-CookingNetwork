@@ -14,11 +14,13 @@ import Checkbox from "@mui/material/Checkbox";
 import Favorite from "@mui/icons-material/Favorite";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
+import { Link } from "react-router-dom";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -52,8 +54,31 @@ function PostedCard() {
   const [comment, setComment] = useState("");
   const [postIdToComment, setPostIdToComment] = useState("");
   const [open, setOpen] = React.useState(false);
+  const [userId, setUserId] = useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const navigate = useNavigate();
+
+  const getUserId = async (event) => {
+    event.preventDefault();
+
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "bearer " + token,
+      },
+    };
+    const response = await fetch(
+      `https://social-network-api.osc-fr1.scalingo.io/nom-nom/user/${userId}`,
+      options
+    );
+
+    const data = await response.json();
+  };
+  const navigateToTargetUser = () => {
+    navigate(`/user/${userId}`);
+  };
 
   const handleExpandClick = async () => {
     setExpanded(!expanded);
@@ -64,7 +89,15 @@ function PostedCard() {
 
   const renderComments = (item) => {
     return item.comments.map((comment, index) => (
-      <div key={index}>{comment.content}</div>
+      <div key={index}>
+        <Link
+          to={`/user/${comment.userId}`}
+          onClick={() => navigateToUserProfile(comment.userId)}
+        >
+          {comment.firstname} {comment.lastname}
+        </Link>
+        : {comment.content}
+      </div>
     ));
   };
 

@@ -6,6 +6,7 @@ import SignUp from "./Component/Signup/Signup";
 import CreateCard from "./Component/createCard/createCard";
 import Profil from "./Component/Profil/Profil";
 import EditProfil from "./Component/EditProfil/EditProfil";
+import UserProfil from "./Component/UserProfil/UserProfil";
 
 function App() {
   const router = createBrowserRouter([
@@ -32,6 +33,10 @@ function App() {
     {
       path: "/editingprofil",
       element: <EditProfil />,
+    },
+    {
+      path: "/user/:userId",
+      element: <UserProfil />,
     },
   ]);
   return (

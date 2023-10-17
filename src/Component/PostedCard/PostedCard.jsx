@@ -52,6 +52,7 @@ function PostedCard() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [comment, setComment] = useState("");
+  const [posts, setPosts] = useState("");
   const [postIdToComment, setPostIdToComment] = useState("");
   const [open, setOpen] = React.useState(false);
   const [userId, setUserId] = useState("");
@@ -59,8 +60,8 @@ function PostedCard() {
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
 
-  const navigateToHome = () => {
-    navigate("/");
+  const navigateToUserProfile = (userId) => {
+    navigate(`/user/${userId}`);
   };
 
   const getUserId = async (event) => {
@@ -89,6 +90,21 @@ function PostedCard() {
   };
   const handleExpandClickComment = async () => {
     setExpandedComment(!expandedComment);
+  };
+
+  const renderTitle = (item) => {
+    return (
+      <div>
+        {item.title} par{" "}
+        <Link
+          className="linkCom"
+          to={`/user/${item.userId}`}
+          onClick={() => navigateToUserProfile(item.userId)}
+        >
+          {item.firstname} {item.lastname}
+        </Link>{" "}
+      </div>
+    );
   };
 
   const renderComments = (item) => {
@@ -120,7 +136,6 @@ function PostedCard() {
     let data = await response.json();
     setApiData(data.posts);
     console.log(data);
-    console.log(apiData);
   };
 
   const handleCommentClick = (postId) => {
@@ -206,7 +221,7 @@ function PostedCard() {
                   variant="h5"
                   color="text.secondary"
                 >
-                  {item.title}
+                  <div className="title">{renderTitle(item)}</div>
                 </Typography>
               </CardContent>
               <CardActions disableSpacing>

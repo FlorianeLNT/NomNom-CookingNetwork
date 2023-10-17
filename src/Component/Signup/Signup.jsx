@@ -77,11 +77,11 @@ function SignUp() {
     if (!response.ok) {
       console.error(`Erreur ${response.status}: ${response.statusText}`);
     }
-    ///
+
     if (data.token) {
       localStorage.setItem("token", data.token);
     }
-    ///
+
     if (data.message) {
       setMessage(data.message);
     }

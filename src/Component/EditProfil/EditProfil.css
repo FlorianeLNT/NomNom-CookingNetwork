@@ -5,13 +5,16 @@
   align-items: center !important;
   margin-top: 10vh;
   gap: 50px;
-  width: fit-content;
-  border: 10px solid #f4cb9e;
+  /* background-color: #f4cb9e; */
   padding: 5vh;
   font-size: 1.5rem;
 }
 
-.ficheProfil {
+.inputCard {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 2vh;
+  border: 10px solid #f4cb9e;
+  width: 25vw;
 }

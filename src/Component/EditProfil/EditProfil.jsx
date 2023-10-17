@@ -5,6 +5,7 @@ import "./EditProfil.css";
 import Button from "@mui/material/Button";
 import { useState } from "react";
 import NavBar from "../NavBar/NavBar";
+import { useNavigate } from "react-router-dom";
 
 function EditProfil() {
   const [firstName, setFirstName] = useState("");
@@ -13,20 +14,27 @@ function EditProfil() {
   const [age, setAge] = useState("");
   const [hobby, setHobby] = useState("");
 
-  const edit = async (e) => {
-    e.preventDefault();
+  const navigate = useNavigate();
+
+  const navigateToProfil = () => {
+    navigate("/profil");
+  };
+
+  async function handleEdit() {
+    const userToken = localStorage.getItem("token");
 
     const options = {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "bearer " + token,
+        Authorization: `bearer ${userToken}`,
       },
       body: JSON.stringify({
         firstname: firstName,
         lastname: lastName,
+        email: email,
         age: age,
-        Hobby: hobby,
+        occupation: hobby,
       }),
     };
     const response = await fetch(
@@ -34,23 +42,24 @@ function EditProfil() {
       options
     );
 
-    const data = await response.json();
+    if (response.ok) {
+      console.log("profil mis à jour");
+      navigate("/profil");
+    }
+  }
 
-    const token = data.token;
-  };
   return (
     <div>
       <NavBar />
-      <div className="ficheProfil">
-        <Box
-          sx={{
-            "& .MuiTextField-root": { m: 1, width: "25ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <div className="inputEdit">
-            <h3>Édition du profil :</h3>
+      <Box
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "25ch" },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <div className="inputEdit">
+          <div className="inputCard">
             <TextField
               required
               id="outlined-firstName"
@@ -74,16 +83,6 @@ function EditProfil() {
               onChange={(e) => setLastName(e.target.value)}
             />
             <TextField
-              id="outlined-age"
-              label="Âge"
-              type="number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-            />
-            <TextField
               required
               id="outlined-email"
               label="E-mail"
@@ -95,6 +94,16 @@ function EditProfil() {
               onChange={(e) => setEmail(e.target.value)}
             />
             <TextField
+              id="outlined-age"
+              label="Âge"
+              type="number"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
+            />
+            <TextField
               id="outlined-Hobby"
               label="Hobby"
               type="text"
@@ -104,20 +113,34 @@ function EditProfil() {
               value={hobby}
               onChange={(e) => setHobby(e.target.value)}
             />
-            <Button
-              className="button-save"
-              variant="contained"
-              onClick={edit}
-              sx={{
-                backgroundColor: "#6b041f",
-                "&:hover": { backgroundColor: "#921738" },
-              }}
-            >
-              Enregistrer
-            </Button>
+            <div className="bouton-modif">
+              <Button
+                className="button-save"
+                variant="contained"
+                onClick={handleEdit}
+                sx={{
+                  backgroundColor: "#6b041f",
+                  "&:hover": { backgroundColor: "#921738" },
+                }}
+              >
+                Enregistrer
+              </Button>
+              <Button
+                className="button-save"
+                variant="contained"
+                onClick={navigateToProfil}
+                sx={{
+                  backgroundColor: "#6b041f",
+                  "&:hover": { backgroundColor: "#921738" },
+                  marginLeft: "5px",
+                }}
+              >
+                Annuler
+              </Button>
+            </div>
           </div>
-        </Box>
-      </div>
+        </div>
+      </Box>
     </div>
   );
 }

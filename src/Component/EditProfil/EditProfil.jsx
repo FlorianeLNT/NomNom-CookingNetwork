@@ -8,13 +8,26 @@ import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
+import { useLocation } from "react-router-dom";
+
 function EditProfil() {
+<<<<<<< HEAD
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
   const [hobby, setHobby] = useState("");
   const [userInfo, setUserInfo] = useState({});
+=======
+  const location = useLocation();
+  const { userInfo } = location.state;
+
+  const [firstName, setFirstName] = useState(userInfo.firstname);
+  const [lastName, setLastName] = useState(userInfo.lastname);
+  const [email, setEmail] = useState(userInfo.email);
+  const [age, setAge] = useState(userInfo.age);
+  const [hobby, setHobby] = useState(userInfo.occupation);
+>>>>>>> ff429e334a0b094beb3b4b11e7099f31f0c1e656
 
   const navigate = useNavigate();
 

@@ -7,12 +7,17 @@ import { useState } from "react";
 import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 
+import { useLocation } from "react-router-dom";
+
 function EditProfil() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [age, setAge] = useState("");
-  const [hobby, setHobby] = useState("");
+  const location = useLocation();
+  const { userInfo } = location.state;
+
+  const [firstName, setFirstName] = useState(userInfo.firstname);
+  const [lastName, setLastName] = useState(userInfo.lastname);
+  const [email, setEmail] = useState(userInfo.email);
+  const [age, setAge] = useState(userInfo.age);
+  const [hobby, setHobby] = useState(userInfo.occupation);
 
   const navigate = useNavigate();
 

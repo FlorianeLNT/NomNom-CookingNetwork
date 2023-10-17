@@ -9,7 +9,7 @@ function Profil() {
   const navigate = useNavigate();
 
   const navigateToEditProfil = () => {
-    navigate("/editingprofil");
+    navigate("/editingprofil", { state: { userInfo } });
   };
 
   const navigateToLogin = () => {
@@ -32,7 +32,7 @@ function Profil() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${userToken}`,
+        Authorization: `bearer ${userToken}`,
       },
     };
 

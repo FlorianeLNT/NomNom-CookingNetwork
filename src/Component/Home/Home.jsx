@@ -1,12 +1,13 @@
 import "./Home.css";
 import NavBar from "../NavBar/NavBar";
+import NavBarMobile from "../NavBarMobile/NavBarMobile";
 import PostedCard from "../PostedCard/PostedCard";
-import Profil from "../Profil/Profil";
 
 function Home() {
   return (
     <>
       <NavBar />
+      <NavBarMobile />
       <PostedCard />
     </>
   );

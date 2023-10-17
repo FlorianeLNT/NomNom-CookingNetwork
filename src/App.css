@@ -45,4 +45,27 @@
 
 body {
   margin: 0px;
+  background-color: rgba(243, 239, 239, 0.888) !important;
+}
+
+/* Pour les écrans de 720p et plus grands */
+@media (min-width: 720px) {
+  .NavBar {
+    display: block;
+  }
+
+  .NavBarMobile {
+    display: none;
+  }
+}
+
+/* Pour les écrans de moins de 720p */
+@media (max-width: 719px) {
+  .NavBar {
+    display: none;
+  }
+
+  .NavBarMobile {
+    display: block;
+  }
 }

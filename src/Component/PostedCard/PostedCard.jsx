@@ -91,6 +91,7 @@ function PostedCard() {
     return item.comments.map((comment, index) => (
       <div key={index}>
         <Link
+          className="linkCom"
           to={`/user/${comment.userId}`}
           onClick={() => navigateToUserProfile(comment.userId)}
         >
@@ -109,7 +110,7 @@ function PostedCard() {
       },
     };
     let response = await fetch(
-      "https://social-network-api.osc-fr1.scalingo.io/nom-nom/posts?page=0&limit=99999",
+      "https://social-network-api.osc-fr1.scalingo.io/nom-nom/posts?page=0&limit=5",
       options
     );
     let data = await response.json();
@@ -207,14 +208,14 @@ function PostedCard() {
               <CardActions disableSpacing>
                 <Checkbox
                   {...label}
-                  icon={<FavoriteBorder style={{ color: "red" }} />}
-                  checkedIcon={<Favorite style={{ color: "red" }} />}
+                  icon={<FavoriteBorder style={{ color: "#6b041f" }} />}
+                  checkedIcon={<Favorite style={{ color: "#6b041f" }} />}
                   onClick={() => handleCheckedIcon(item._id)}
                 />
                 <span>{item.likes.length}</span>
-
                 <Button>
                   <AddCommentIcon
+                    sx={{ color: "#6b041f", "&:hover": { color: "#a60631" } }}
                     onClick={() => {
                       handleCommentClick(item._id);
                       handleOpen();

@@ -2,6 +2,7 @@ import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 function UserProfil() {
   const [userInfo, setUserInfo] = useState({});
@@ -53,18 +54,41 @@ function UserProfil() {
     getUserData();
   }, []);
 
+  const renderUserInfos = () => {
+    const { firstname, lastname, email, age, occupation } = userInfo;
+
+    return (
+      <div className="profilCard">
+        <h3>Mon Profil : </h3>
+        <p>Prénom : {firstname}</p>
+        <p>Nom : {lastname}</p>
+        {age && <p>Âge : {age} ans</p>}
+        {occupation && <p>Occupation : {occupation}</p>}
+        <Button
+          className="button-modifier"
+          variant="contained"
+          onClick={navigateToEditProfil}
+          sx={{
+            backgroundColor: "#6b041f",
+            "&:hover": { backgroundColor: "#921738" },
+          }}
+        >
+          Modifier
+        </Button>
+      </div>
+    );
+  };
+
   return (
     <>
       <NavBar />
       <div className="my-profile">
         <div className="profil-info">
-          <div className="profilCard">
-            <h3>Informations sur l'utilisateur : </h3>
-            <p>Prénom : {userInfo.firstname}</p>
-            <p>Nom : {userInfo.lastname} </p>
-            <p>Âge : {userInfo.age} ans</p>
-            <p>Occupation : {userInfo.occupation}</p>
-          </div>
+          {Object.keys(userInfo).length > 0 ? (
+            renderUserInfos()
+          ) : (
+            <p>Chargement des informations...</p>
+          )}
         </div>
       </div>
     </>

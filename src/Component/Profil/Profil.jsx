@@ -53,30 +53,42 @@ function Profil() {
     getUserData();
   }, []);
 
+  const renderUserInfos = () => {
+    const { firstname, lastname, email, age, occupation } = userInfo;
+
+    return (
+      <div className="profilCard">
+        <h3>Mon Profil : </h3>
+        <p>Prénom : {firstname}</p>
+        <p>Nom : {lastname}</p>
+        <p>Email : {email}</p>
+        {age && <p>Âge : {age} ans</p>}
+        {occupation && <p>Occupation : {occupation}</p>}
+        <Button
+          className="button-modifier"
+          variant="contained"
+          onClick={navigateToEditProfil}
+          sx={{
+            backgroundColor: "#6b041f",
+            "&:hover": { backgroundColor: "#921738" },
+          }}
+        >
+          Modifier
+        </Button>
+      </div>
+    );
+  };
+
   return (
     <>
       <NavBar />
       <div className="my-profile">
         <div className="profil-info">
-          <div className="profilCard">
-            <h3>Mon Profil : </h3>
-            <p>Prénom : {userInfo.firstname}</p>
-            <p>Nom : {userInfo.lastname} </p>
-            <p>Email : {userInfo.email}</p>
-            <p>Âge : {userInfo.age} ans</p>
-            <p>Occupation : {userInfo.occupation}</p>
-            <Button
-              className="button-modifier"
-              variant="contained"
-              onClick={navigateToEditProfil}
-              sx={{
-                backgroundColor: "#6b041f",
-                "&:hover": { backgroundColor: "#921738" },
-              }}
-            >
-              Modifier
-            </Button>
-          </div>
+          {Object.keys(userInfo).length > 0 ? (
+            renderUserInfos()
+          ) : (
+            <p>Chargement des informations...</p>
+          )}
         </div>
       </div>
     </>

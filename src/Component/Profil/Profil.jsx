@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+//fix
 function Profil() {
   const [userInfo, setUserInfo] = useState({});
   const navigate = useNavigate();

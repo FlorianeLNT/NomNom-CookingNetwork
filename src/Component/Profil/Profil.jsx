@@ -20,9 +20,9 @@ function Profil() {
     navigate("/profil");
   };
 
-  const userToken = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
-  if (!userToken) {
+  if (!token) {
     navigateToProfil();
     return;
   }
@@ -32,7 +32,7 @@ function Profil() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${userToken}`,
+        Authorization: "bearer " + token,
       },
     };
 
@@ -63,7 +63,7 @@ function Profil() {
             <p>Prénom : {userInfo.firstname}</p>
             <p>Nom : {userInfo.lastname} </p>
             <p>Email : {userInfo.email}</p>
-            <p>Âge : {userInfo.age}</p>
+            <p>Âge : {userInfo.age} ans</p>
             <p>Occupation : {userInfo.occupation}</p>
             <Button
               className="button-modifier"

@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function EditProfil() {
   const [firstName, setFirstName] = useState("");
@@ -13,6 +14,7 @@ function EditProfil() {
   const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
   const [hobby, setHobby] = useState("");
+  const [userInfo, setUserInfo] = useState({});
 
   const navigate = useNavigate();
 
@@ -21,13 +23,13 @@ function EditProfil() {
   };
 
   async function handleEdit() {
-    const userToken = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
     const options = {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `bearer ${userToken}`,
+        Authorization: "bearer " + token,
       },
       body: JSON.stringify({
         firstname: firstName,
@@ -47,6 +49,32 @@ function EditProfil() {
       navigate("/profil");
     }
   }
+
+  async function getUserData() {
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "bearer " + token,
+      },
+    };
+
+    const response = await fetch(
+      "https://social-network-api.osc-fr1.scalingo.io/nom-nom/user",
+      options
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      setUserInfo(data);
+    } else {
+      navigateToLogin();
+    }
+  }
+
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   return (
     <div>
@@ -68,6 +96,7 @@ function EditProfil() {
               InputLabelProps={{
                 shrink: true,
               }}
+              defaultValue={userInfo.firstname}
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             />

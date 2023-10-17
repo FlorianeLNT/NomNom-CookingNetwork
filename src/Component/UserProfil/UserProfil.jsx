@@ -2,7 +2,7 @@ import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-//fix
+
 function UserProfil() {
   const [userInfo, setUserInfo] = useState({});
   const navigate = useNavigate();

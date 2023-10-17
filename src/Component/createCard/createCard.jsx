@@ -14,7 +14,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import "./CreateCard.css";
-//fix
+
 const steps = [
   // {
   //   label: "Choisissez votre image",

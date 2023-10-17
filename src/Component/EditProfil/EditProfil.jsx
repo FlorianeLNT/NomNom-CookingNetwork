@@ -8,7 +8,7 @@ import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-//fix
+
 function EditProfil() {
   const location = useLocation();
   const { userInfo } = location.state;

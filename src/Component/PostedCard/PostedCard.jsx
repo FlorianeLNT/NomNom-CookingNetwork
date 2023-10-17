@@ -59,6 +59,10 @@ function PostedCard() {
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
 
+  const navigateToHome = () => {
+    navigate("/");
+  };
+
   const getUserId = async (event) => {
     event.preventDefault();
 
@@ -254,7 +258,10 @@ function PostedCard() {
                             onChange={(e) => setComment(e.target.value)}
                           />
                           <IconButton
-                            onClick={() => handleCommentSubmit(item._id)}
+                            onClick={() => {
+                              handleCommentSubmit(item._id);
+                              handleClose();
+                            }}
                           >
                             <SendIcon />
                           </IconButton>

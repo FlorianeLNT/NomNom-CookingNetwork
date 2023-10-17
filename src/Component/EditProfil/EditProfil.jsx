@@ -6,13 +6,18 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 function EditProfil() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [age, setAge] = useState("");
-  const [hobby, setHobby] = useState("");
+  const location = useLocation();
+  const { userInfo } = location.state;
+
+  const [firstName, setFirstName] = useState(userInfo.firstname);
+  const [lastName, setLastName] = useState(userInfo.lastname);
+  const [email, setEmail] = useState(userInfo.email);
+  const [age, setAge] = useState(userInfo.age);
+  const [hobby, setHobby] = useState(userInfo.occupation);
 
   const navigate = useNavigate();
 
@@ -21,13 +26,13 @@ function EditProfil() {
   };
 
   async function handleEdit() {
-    const userToken = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
 
     const options = {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `bearer ${userToken}`,
+        Authorization: "bearer " + token,
       },
       body: JSON.stringify({
         firstname: firstName,
@@ -47,6 +52,32 @@ function EditProfil() {
       navigate("/profil");
     }
   }
+
+  async function getUserData() {
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "bearer " + token,
+      },
+    };
+
+    const response = await fetch(
+      "https://social-network-api.osc-fr1.scalingo.io/nom-nom/user",
+      options
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      setUserInfo(data);
+    } else {
+      navigateToLogin();
+    }
+  }
+
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   return (
     <div>
@@ -68,6 +99,7 @@ function EditProfil() {
               InputLabelProps={{
                 shrink: true,
               }}
+              defaultValue={userInfo.firstname}
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             />

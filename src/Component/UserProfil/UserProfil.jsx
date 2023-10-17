@@ -1,12 +1,12 @@
-import "./Profil.css";
-import Button from "@mui/material/Button";
 import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-function Profil() {
+function UserProfil() {
   const [userInfo, setUserInfo] = useState({});
   const navigate = useNavigate();
+  const { userId } = useParams();
 
   const navigateToEditProfil = () => {
     navigate("/editingprofil", { state: { userInfo } });
@@ -37,7 +37,7 @@ function Profil() {
     };
 
     const response = await fetch(
-      "https://social-network-api.osc-fr1.scalingo.io/nom-nom/user",
+      `https://social-network-api.osc-fr1.scalingo.io/nom-nom/user/${userId}`,
       options
     );
 
@@ -59,23 +59,11 @@ function Profil() {
       <div className="my-profile">
         <div className="profil-info">
           <div className="profilCard">
-            <h3>Mon Profil : </h3>
+            <h3>Informations sur l'utilisateur : </h3>
             <p>Prénom : {userInfo.firstname}</p>
             <p>Nom : {userInfo.lastname} </p>
-            <p>Email : {userInfo.email}</p>
             <p>Âge : {userInfo.age} ans</p>
             <p>Occupation : {userInfo.occupation}</p>
-            <Button
-              className="button-modifier"
-              variant="contained"
-              onClick={navigateToEditProfil}
-              sx={{
-                backgroundColor: "#6b041f",
-                "&:hover": { backgroundColor: "#921738" },
-              }}
-            >
-              Modifier
-            </Button>
           </div>
         </div>
       </div>
@@ -83,4 +71,4 @@ function Profil() {
   );
 }
 
-export default Profil;
+export default UserProfil;

@@ -14,14 +14,13 @@ import Checkbox from "@mui/material/Checkbox";
 import Favorite from "@mui/icons-material/Favorite";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import { useState } from "react";
-import Comment from "../Comment/comment";
+import { useNavigate } from "react-router-dom";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
-import { Rotate90DegreesCcwRounded } from "@mui/icons-material";
-import { Add } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -49,23 +48,57 @@ const style = {
 function PostedCard() {
   const [expanded, setExpanded] = React.useState(false);
   const [expandedComment, setExpandedComment] = React.useState(false);
-  const [title, setTitle] = React.useState("");
-  const [content, setContent] = React.useState("");
   const [apiData, setApiData] = React.useState([]);
   const [token, setToken] = useState(localStorage.getItem("token"));
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
-  const [commentInputOpen, setCommentInputOpen] = useState(false);
   const [comment, setComment] = useState("");
   const [postIdToComment, setPostIdToComment] = useState("");
   const [open, setOpen] = React.useState(false);
+  const [userId, setUserId] = useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const navigate = useNavigate();
+
+  const getUserId = async (event) => {
+    event.preventDefault();
+
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "bearer " + token,
+      },
+    };
+    const response = await fetch(
+      `https://social-network-api.osc-fr1.scalingo.io/nom-nom/user/${userId}`,
+      options
+    );
+
+    const data = await response.json();
+  };
+  const navigateToTargetUser = () => {
+    navigate(`/user/${userId}`);
+  };
 
   const handleExpandClick = async () => {
     setExpanded(!expanded);
   };
   const handleExpandClickComment = async () => {
     setExpandedComment(!expandedComment);
+  };
+
+  const renderComments = (item) => {
+    return item.comments.map((comment, index) => (
+      <div key={index}>
+        <Link
+          to={`/user/${comment.userId}`}
+          onClick={() => navigateToUserProfile(comment.userId)}
+        >
+          {comment.firstname} {comment.lastname}
+        </Link>
+        : {comment.content}
+      </div>
+    ));
   };
 
   const api = async () => {
@@ -76,7 +109,7 @@ function PostedCard() {
       },
     };
     let response = await fetch(
-      "https://social-network-api.osc-fr1.scalingo.io/nom-nom/posts?page=0&limit=5",
+      "https://social-network-api.osc-fr1.scalingo.io/nom-nom/posts?page=0&limit=99999",
       options
     );
     let data = await response.json();
@@ -256,11 +289,6 @@ function PostedCard() {
                     {item.content}
                   </Typography>
                 </CardContent>
-                <div className="comments">
-                  {item.comments.map((comment, commentIndex) => (
-                    <Comment key={commentIndex} content={comment.content} />
-                  ))}
-                </div>
               </Collapse>
               <div>
                 <CardActions>
@@ -278,13 +306,7 @@ function PostedCard() {
                   </div>
                 </CardActions>
                 <Collapse in={expandedComment} timeout="auto" unmountOnExit>
-                  <div>
-                    Praesentium explicabo commodi, repellat, dolor aliquam
-                    beatae, eveniet nihil quia soluta blanditiis dolorum totam!
-                    Itaque nam voluptatem soluta est similique, voluptatibus aut
-                    impedit ex error quas laborum veniam fugit quis quidem nemo
-                    ad. Debitis quas possimus molestias unde.
-                  </div>
+                  <div className="comments">{renderComments(item)}</div>
                 </Collapse>
               </div>
             </Card>

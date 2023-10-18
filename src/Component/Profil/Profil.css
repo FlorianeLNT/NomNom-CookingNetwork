@@ -2,10 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10vh;
-  gap: 50px;
-  padding: 5vh;
+  margin-top: 7vh;
   font-size: 1.5rem;
+}
+
+.css-1fr0jp-MuiButtonBase-root-MuiButton-root{
+  margin: 3vh;
 }
 
 .profilCard {
@@ -14,8 +16,18 @@
   align-items: center;
   padding: 2vh;
   border: 6px solid #f4cb9e;
-  width: 25vw;
+  width: 35vw;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+.profilCard p{
+
+  margin:2vh!important;
+
+  text-align: justify;
+}
+
+.profilCard span{
+  padding-left: 3vh;
 }
 
 @media (max-width: 599px) {
@@ -23,10 +35,28 @@
     width: auto;
     border: 2px solid #f4cb9e;
   }
+  .css-1fr0jp-MuiButtonBase-root-MuiButton-root {
+    margin-top: 5vh;
+  }
   .profilCard h3{
   font-size: 1.2rem!important;
   }
   .profilCard p{
     font-size: 1rem!important;
+    margin:0vh!important;
+    padding: 5px;
+    text-align: justify;
+  }
+  .profilCard span {
+    text-align: justify;
+   font-size: 1rem;
+   padding-top: 5px;
+
+   
   }
 }
+
+.profilCard span{
+  padding-left: 3vh;
+}
+

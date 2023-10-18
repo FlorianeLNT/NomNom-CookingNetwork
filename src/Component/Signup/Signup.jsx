@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import Alert from "@mui/material/Alert";
 import "./Signup.css";
 
 function Copyright(props) {
@@ -43,6 +44,8 @@ function SignUp() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [message, setMessage] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const navigateToHome = () => {
@@ -77,16 +80,16 @@ function SignUp() {
 
     if (!response.ok) {
       console.error(`Erreur ${response.status}: ${response.statusText}`);
-    }
-
-    if (data.token) {
-      localStorage.setItem("token", data.token);
+    } else {
+      setShowAlert(true);
+      setTimeout(() => {
+        navigateToLogin();
+      }, 2000);
     }
 
     if (data.message) {
-      setMessage(data.message);
+      setError("Veuillez remplir les champs requis");
     }
-    navigateToLogin();
   };
 
   return (
@@ -200,6 +203,13 @@ function SignUp() {
                 </Link>
               </Grid>
             </Grid>
+            {showAlert && (
+              <Alert severity="success">
+                Création de compte réussie, redirection vers la page de
+                connexion
+              </Alert>
+            )}{" "}
+            {error && <Alert severity="error">{error}</Alert>}
           </Box>
           <div>{message && <div style={{ color: "red" }}>{message}</div>}</div>
         </Box>

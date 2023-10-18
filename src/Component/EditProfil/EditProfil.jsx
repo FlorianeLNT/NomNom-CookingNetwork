@@ -8,7 +8,9 @@ import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import Alert from "@mui/material/Alert";
 import NavBarMobile from "../NavBarMobile/NavBarMobile";
+
 function EditProfil() {
   const location = useLocation();
   const { userInfo } = location.state;
@@ -17,7 +19,7 @@ function EditProfil() {
   const [email, setEmail] = useState(userInfo.email);
   const [age, setAge] = useState(userInfo.age);
   const [hobby, setHobby] = useState(userInfo.occupation);
-
+  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
 
   const navigateToProfil = () => {
@@ -25,13 +27,11 @@ function EditProfil() {
   };
 
   async function handleEdit() {
-    const token = localStorage.getItem("token");
-
     const options = {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "bearer " + token,
+        Authorization: "bearer " + localStorage.getItem("token"),
       },
       body: JSON.stringify({
         firstname: firstName,
@@ -47,19 +47,19 @@ function EditProfil() {
     );
 
     if (response.ok) {
-      console.log("profil mis à jour");
-      navigate("/profil");
+      setShowAlert(true);
+      setTimeout(() => {
+        navigateToProfil();
+      }, 2000);
     }
   }
 
   async function getUserData() {
-    const token = localStorage.getItem("token");
-
     const options = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "bearer " + token,
+        Authorization: "bearer " + localStorage.getItem("token"),
       },
     };
 
@@ -146,6 +146,11 @@ function EditProfil() {
               onChange={(e) => setHobby(e.target.value)}
             />
             <div className="bouton-modif">
+              {showAlert && (
+                <Alert severity="success">
+                  Votre profil a été mis à jour !
+                </Alert>
+              )}{" "}
               <Button
                 className="button-save"
                 variant="contained"

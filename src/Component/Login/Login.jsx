@@ -1,3 +1,4 @@
+import * as React from "react";
 import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -11,6 +12,10 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import Alert from "@mui/material/Alert";
+import IconButton from "@mui/material/IconButton";
+import Collapse from "@mui/material/Collapse";
+import CloseIcon from "@mui/icons-material/Close";
 
 function Copyright(props) {
   return (
@@ -41,6 +46,8 @@ function Login() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
+  const [showAlert, setShowAlert] = useState(false);
+  const [error, setError] = useState(null);
 
   const navigateToHome = () => {
     navigate("/");
@@ -70,9 +77,12 @@ function Login() {
     if (data.success === true) {
       const token = data.token;
       localStorage.setItem("token", token);
-      navigateToHome();
+      setShowAlert(true);
+      setTimeout(() => {
+        navigateToHome();
+      }, 2000);
     } else {
-      setMessage(data.message);
+      setError("Email ou mot de passe incorrect");
     }
   };
 
@@ -144,6 +154,12 @@ function Login() {
             >
               Se connecter
             </Button>
+            {showAlert && (
+              <Alert severity="success">
+                Vous êtes connecté, redirection vers la page d'acceuil !
+              </Alert>
+            )}
+            {error && <Alert severity="error">{error}</Alert>}
             <Grid container>
               <Grid item xs>
                 <Link

@@ -4,6 +4,7 @@ import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import NavBarMobile from "../NavBarMobile/NavBarMobile";
+
 function Profil() {
   const [userInfo, setUserInfo] = useState({});
   const navigate = useNavigate();
@@ -20,11 +21,9 @@ function Profil() {
     navigate("/profil");
   };
 
-  const userToken = localStorage.getItem("token");
-
-  if (!userToken) {
+  if (!localStorage.getItem("token")) {
     navigateToProfil();
-    return;
+    return null; // Ajout d'un return null ici pour éviter une erreur
   }
 
   async function getUserData() {
@@ -32,7 +31,7 @@ function Profil() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `bearer ${userToken}`,
+        Authorization: "bearer " + localStorage.getItem("token"),
       },
     };
 
@@ -58,12 +57,16 @@ function Profil() {
 
     return (
       <div className="profilCard">
-        <h3>Mon Profil : </h3>
+        <h3>Mon Profil :</h3>
         <p>Prénom : {firstname}</p>
         <p>Nom : {lastname}</p>
-        <p>Email : {email}</p>
+        <p>Email : </p> <p>{email}</p>
         {age && <p>Âge : {age} ans</p>}
-        {occupation && <p>Occupation : {occupation}</p>}
+        {occupation && (
+          <>
+            <p>Occupation : </p> <span>{occupation}</span>
+          </>
+        )}
         <Button
           className="button-modifier"
           variant="contained"

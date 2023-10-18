@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
+import NavBarMobile from "../NavBarMobile/NavBarMobile";
 
 function UserProfil() {
   const [userInfo, setUserInfo] = useState({});
@@ -21,9 +22,7 @@ function UserProfil() {
     navigate("/profil");
   };
 
-  const userToken = localStorage.getItem("token");
-
-  if (!userToken) {
+  if (!localStorage.getItem("token")) {
     navigateToProfil();
     return;
   }
@@ -33,7 +32,7 @@ function UserProfil() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `bearer ${userToken}`,
+        Authorization: "bearer " + localStorage.getItem("token"),
       },
     };
 
@@ -55,7 +54,7 @@ function UserProfil() {
   }, []);
 
   const renderUserInfos = () => {
-    const { firstname, lastname, email, age, occupation } = userInfo;
+    const { firstname, lastname, age, occupation } = userInfo;
 
     return (
       <div className="profilCard">
@@ -71,6 +70,7 @@ function UserProfil() {
   return (
     <>
       <NavBar />
+      <NavBarMobile />
       <div className="my-profile">
         <div className="profil-info">
           {Object.keys(userInfo).length > 0 ? (

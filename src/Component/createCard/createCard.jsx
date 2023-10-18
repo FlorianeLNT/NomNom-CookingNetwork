@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import "./CreateCard.css";
 import NavBarMobile from "../NavBarMobile/NavBarMobile";
+import Alert from "@mui/material/Alert";
 
 const steps = [
   // {
@@ -46,15 +47,15 @@ function CreateCard(props) {
   const [selectedFile, setSelectedFile] = React.useState(null);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [image, setImage] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  // const [image, setImage] = useState("");
   const [message, setMessage] = useState("");
-  const [token, setToken] = useState(localStorage.getItem("token"));
   const navigateToHome = () => {
     navigate("/");
   };
 
   async function handlePublish() {
-    if (!token) {
+    if (!localStorage.getItem("token")) {
       console.error("Aucun Token trouvé");
       return;
     }
@@ -65,7 +66,7 @@ function CreateCard(props) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
+            Authorization: "bearer " + localStorage.getItem("token"),
           },
           body: JSON.stringify({
             // image: image,
@@ -79,11 +80,10 @@ function CreateCard(props) {
         throw new Error(`Erreur de réseau - ${response.status}`);
       }
       const data = await response.json();
-      console.log("Nouveau post créé :", data);
-      console.log(title, content);
-      {
+      setShowAlert(true);
+      setTimeout(() => {
         navigateToHome();
-      }
+      }, 2000);
     } catch (error) {
       console.error("Erreur : " + error);
     }
@@ -239,6 +239,11 @@ function CreateCard(props) {
           </Stepper>
           {activeStep === steps.length && (
             <Paper square elevation={0} sx={{ p: 3 }}>
+              {showAlert && (
+                <Alert severity="success">
+                  Votre post a été créé avec succès !
+                </Alert>
+              )}
               <Button
                 type="submit"
                 onClick={handlePublish}

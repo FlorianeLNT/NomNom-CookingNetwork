@@ -21,6 +21,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
 import { Link } from "react-router-dom";
+import BasicPagination from "../Pagination/Pagination";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -49,13 +50,14 @@ function PostedCard() {
   const [expanded, setExpanded] = React.useState(false);
   const [expandedComment, setExpandedComment] = React.useState(false);
   const [apiData, setApiData] = React.useState([]);
-  const [token, setToken] = useState(localStorage.getItem("token"));
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [comment, setComment] = useState("");
   const [posts, setPosts] = useState("");
   const [postIdToComment, setPostIdToComment] = useState("");
   const [open, setOpen] = React.useState(false);
   const [userId, setUserId] = useState("");
+  const [page, setPage] = useState(0);
+  const [maxPage, setMaxPage] = useState(0);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
@@ -71,7 +73,7 @@ function PostedCard() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "bearer " + token,
+        Authorization: "bearer " + localStorage.getItem("token"),
       },
     };
     const response = await fetch(
@@ -130,11 +132,12 @@ function PostedCard() {
       },
     };
     let response = await fetch(
-      "https://social-network-api.osc-fr1.scalingo.io/nom-nom/posts?page=0&limit=5",
+      `https://social-network-api.osc-fr1.scalingo.io/nom-nom/posts?page=${page}&limit=5`,
       options
     );
     let data = await response.json();
     setApiData(data.posts);
+    setMaxPage(data.totalPages);
     console.log(data);
   };
 
@@ -150,7 +153,7 @@ function PostedCard() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "bearer " + token,
+            Authorization: "bearer " + localStorage.getItem("token"),
           },
           body: JSON.stringify({
             postId: postId,
@@ -175,7 +178,7 @@ function PostedCard() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "bearer " + token,
+            Authorization: "bearer " + localStorage.getItem("token"),
           },
           body: JSON.stringify({
             postId: postIdToComment,
@@ -195,7 +198,7 @@ function PostedCard() {
 
   React.useEffect(() => {
     api();
-  }, []);
+  }, [page]);
 
   return (
     <div className="renderCards">
@@ -336,6 +339,12 @@ function PostedCard() {
           </div>
         );
       })}
+      <BasicPagination
+        className="pagination"
+        maxPage={maxPage}
+        page={page}
+        setPage={setPage}
+      />
     </div>
   );
 }

@@ -21,6 +21,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
 import { Link } from "react-router-dom";
+import BasicPagination from "../Pagination/Pagination";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -55,6 +56,8 @@ function PostedCard() {
   const [postIdToComment, setPostIdToComment] = useState("");
   const [open, setOpen] = React.useState(false);
   const [userId, setUserId] = useState("");
+  const [page, setPage] = useState(0);
+  const [maxPage, setMaxPage] = useState(0);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
@@ -129,11 +132,12 @@ function PostedCard() {
       },
     };
     let response = await fetch(
-      "https://social-network-api.osc-fr1.scalingo.io/nom-nom/posts?page=0&limit=5",
+      `https://social-network-api.osc-fr1.scalingo.io/nom-nom/posts?page=${page}&limit=5`,
       options
     );
     let data = await response.json();
     setApiData(data.posts);
+    setMaxPage(data.totalPages);
     console.log(data);
   };
 
@@ -194,7 +198,7 @@ function PostedCard() {
 
   React.useEffect(() => {
     api();
-  }, []);
+  }, [page]);
 
   return (
     <div className="renderCards">
@@ -335,6 +339,12 @@ function PostedCard() {
           </div>
         );
       })}
+      <BasicPagination
+        className="pagination"
+        maxPage={maxPage}
+        page={page}
+        setPage={setPage}
+      />
     </div>
   );
 }

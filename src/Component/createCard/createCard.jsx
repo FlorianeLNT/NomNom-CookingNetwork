@@ -82,7 +82,7 @@ function CreateCard(props) {
       setShowAlert(true);
       setTimeout(() => {
         navigateToHome();
-      }, 3000);
+      }, 2000);
     } catch (error) {
       console.error("Erreur : " + error);
     }

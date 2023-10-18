@@ -46,8 +46,10 @@ function EditProfil() {
     );
 
     if (response.ok) {
-      console.log("profil mis à jour");
-      navigate("/profil");
+      setShowAlert(true);
+      setTimeout(() => {
+        navigateToProfil();
+      }, 2000);
     }
   }
 
@@ -142,6 +144,11 @@ function EditProfil() {
               onChange={(e) => setHobby(e.target.value)}
             />
             <div className="bouton-modif">
+              {showAlert && (
+                <Alert severity="success">
+                  Votre profil a été mis à jour !
+                </Alert>
+              )}{" "}
               <Button
                 className="button-save"
                 variant="contained"

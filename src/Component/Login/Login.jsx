@@ -77,7 +77,7 @@ function Login() {
       setShowAlert(true);
       setTimeout(() => {
         navigateToHome();
-      }, 2000);
+      }, 1000);
     } else {
       setError("Email ou mot de passe incorrect");
     }

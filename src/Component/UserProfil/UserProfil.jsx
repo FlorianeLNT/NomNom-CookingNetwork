@@ -69,8 +69,15 @@ function UserProfil() {
   return (
     <>
       <NavBar />
+      <NavBarMobile />
       <div className="my-profile">
-        <div className="profil-info">{renderUserInfos()}</div>
+        <div className="profil-info">
+          {Object.keys(userInfo).length > 0 ? (
+            renderUserInfos()
+          ) : (
+            <p>Chargement des informations...</p>
+          )}
+        </div>
       </div>
     </>
   );

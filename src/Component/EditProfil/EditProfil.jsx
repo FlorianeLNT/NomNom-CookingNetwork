@@ -8,6 +8,7 @@ import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import Alert from "@mui/material/Alert";
 
 function EditProfil() {
   const location = useLocation();
@@ -17,7 +18,7 @@ function EditProfil() {
   const [email, setEmail] = useState(userInfo.email);
   const [age, setAge] = useState(userInfo.age);
   const [hobby, setHobby] = useState(userInfo.occupation);
-
+  const [showAlert, setShowAlert] = useState(false);
   const navigate = useNavigate();
 
   const navigateToProfil = () => {

@@ -178,7 +178,6 @@ function Login() {
                   sx={{
                     color: "#6b041f",
                     textDecoration: "none",
-                    color: "black",
                     "&:hover": { color: "#921738" },
                   }}
                 >

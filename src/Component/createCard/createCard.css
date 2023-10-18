@@ -1,81 +1,121 @@
-.createCardDiv {
-  margin-top: 10vh;
-  gap: 50px;
-  padding: 5vh;
-  height: 40vh;
-}
-.css-1di5t78-MuiPaper-root{
-  background-color: rgba(243, 239, 239, 0.888) !important;
-}
-
-.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
-  color: #6b041f !important;
-}
-
-.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
-  color: #6b041f !important;
-}
-
-.css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root {
-  margin-right: 1vw;
-}
-
-.parent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.mamie {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* padding-top: 6vh; */
-  width: 25vw;
-  border: 6px solid #f4cb9e;
-}
-
-.text {
-  width: 20vw;
-}
-
-.css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input {
-  height: 15vh !important;
-}
-
-.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
-  color: #6b041f !important;
-}
-
-.css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused
-  .MuiOutlinedInput-notchedOutline {
-  border-color: #6b041f !important;
-}
-
-@media (max-width: 769px){
- .mamie {
-  height: 80%!important;
-  border: none;
+@media (min-width: 769px) {
+  .createCardDiv {
+    margin-top: 10vh;
+    gap: 50px;
+    padding: 5vh;
+    height: 40vh;
   }
-  .parent {
-    width: 75vw;}
 
-  .MuiTextField-root{
-    width: 70vw;
-   
+  .css-1di5t78-MuiPaper-root {
+    background-color: rgba(243, 239, 239, 0.888) !important;
   }
+
+  .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
+    color: #6b041f !important;
+  }
+
+  .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
+    color: #6b041f !important;
+  }
+
   .css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root {
-height: 60vh;
-  
-}
-.css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
-  padding-top: 7vh;
-  width: 80vw;
-  /* height: 50vh; */
-}
+    margin-right: 1vw;
+  }
 
-.css-14yr603-MuiStepContent-root{
-  margin-top: 30vh;
+  .parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mamie {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* padding-top: 6vh; */
+    width: 25vw;
+    border: 6px solid #f4cb9e;
+  }
+
+  .text {
+    width: 20vw;
+  }
+
+  .css-1sqnrkk-MuiInputBase-input-MuiOutlinedInput-input {
+    height: 15vh !important;
+  }
+
+  .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+    color: #6b041f !important;
+  }
+
+  .css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused
+    .MuiOutlinedInput-notchedOutline {
+    border-color: #6b041f !important;
+  }
 }
+@media (max-width: 769px) {
+  .css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root {
+    height: 30vh;
+  }
+
+  .createCardDiv {
+    margin-top: 10vh;
+    gap: 50px;
+    padding: 5vh;
+    height: 40vh;
+  }
+
+  .css-1di5t78-MuiPaper-root {
+    background-color: rgba(243, 239, 239, 0.888) !important;
+  }
+
+  .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
+    color: #6b041f !important;
+  }
+
+  .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
+    color: #6b041f !important;
+  }
+
+  .css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root {
+    margin-right: 1vw;
+  }
+
+  .parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mamie {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25vw;
+  }
+
+  .text {
+    width: 20vw;
+  }
+
+  .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+    color: #6b041f !important;
+  }
+
+  .css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused
+    .MuiOutlinedInput-notchedOutline {
+    border-color: #6b041f !important;
+  }
+
+  .MuiTextField-root {
+    width: 70vw;
+  }
+
+  .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+    padding-top: 7vh;
+    width: 80vw;
+  }
 }

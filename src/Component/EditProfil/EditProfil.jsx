@@ -50,7 +50,7 @@ function EditProfil() {
       setShowAlert(true);
       setTimeout(() => {
         navigateToProfil();
-      }, 2000);
+      }, 1000);
     }
   }
 
@@ -137,10 +137,11 @@ function EditProfil() {
             />
             <TextField
               id="outlined-Hobby"
-              label="Hobby"
+              label="Occupation(s)"
               type="text"
               InputLabelProps={{
                 shrink: true,
+                maxlength: 5,
               }}
               value={hobby}
               onChange={(e) => setHobby(e.target.value)}

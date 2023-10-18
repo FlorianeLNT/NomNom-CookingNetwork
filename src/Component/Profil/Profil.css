@@ -6,10 +6,6 @@
   font-size: 1.5rem;
 }
 
-.css-1fr0jp-MuiButtonBase-root-MuiButton-root{
-  margin: 3vh;
-}
-
 .profilCard {
   display: flex;
   flex-direction: column;
@@ -19,44 +15,101 @@
   width: 35vw;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
-.profilCard p{
-
-  margin:2vh!important;
-
+.profilCard p {
+  margin: 2vh !important;
   text-align: justify;
 }
 
-.profilCard span{
-  padding-left: 3vh;
-}
-
 @media (max-width: 599px) {
-  .profilCard{
-    width: auto;
+  .profilCard {
+    display: none !important;
+  }
+  .profilCardMobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vh;
     border: 2px solid #f4cb9e;
+    width: auto;
+    height: 65vh;
+    gap: 3%;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  }
+  .profilCardMobile p {
+    margin: 2vh !important;
+    text-align: justify;
+  }
+
+  .profilCardMobile span {
+    padding-left: 3vh;
+  }
+  .profilCardMobile {
   }
   .css-1fr0jp-MuiButtonBase-root-MuiButton-root {
     margin-top: 5vh;
   }
-  .profilCard h3{
-  font-size: 1.2rem!important;
+  .profilCardMobile h3 {
+    font-size: 1.2rem !important;
   }
-  .profilCard p{
-    font-size: 1rem!important;
-    margin:0vh!important;
+  .profilCardMobile p {
+    font-size: 1rem !important;
+    margin: 0vh !important;
     padding: 5px;
     text-align: justify;
   }
-  .profilCard span {
+  .profilCardMobile span {
     text-align: justify;
-   font-size: 1rem;
-   padding-top: 5px;
-
-   
+    font-size: 1rem;
+    padding-top: 5px;
   }
 }
 
-.profilCard span{
-  padding-left: 3vh;
+@media (min-width: 599px) {
+  .profilCardMobile {
+    display: none;
+  }
 }
 
+@media (max-width: 768px) {
+  .profilCard {
+    display: none !important;
+  }
+  .profilCardMobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vh;
+    border: 2px solid #f4cb9e;
+    width: auto;
+    height: 65vh;
+    gap: 3%;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  }
+  .profilCardMobile p {
+    margin: 2vh !important;
+    text-align: justify;
+  }
+
+  .profilCardMobile span {
+    padding-left: 3vh;
+  }
+  .profilCardMobile {
+  }
+  .css-1fr0jp-MuiButtonBase-root-MuiButton-root {
+    margin-top: 5vh;
+  }
+  .profilCardMobile h3 {
+    font-size: 1.2rem !important;
+  }
+  .profilCardMobile p {
+    font-size: 1rem !important;
+    margin: 0vh !important;
+    padding: 5px;
+    text-align: justify;
+  }
+  .profilCardMobile span {
+    text-align: justify;
+    font-size: 1rem;
+    padding-top: 5px;
+  }
+}

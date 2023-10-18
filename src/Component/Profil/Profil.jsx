@@ -56,28 +56,83 @@ function Profil() {
     const { firstname, lastname, email, age, occupation } = userInfo;
 
     return (
-      <div className="profilCard">
-        <h3>Mon Profil :</h3>
-        <p>Prénom : {firstname}</p>
-        <p>Nom : {lastname}</p>
-        <p>Email : </p> <p>{email}</p>
-        {age && <p>Âge : {age} ans</p>}
-        {occupation && (
-          <>
-            <p>Occupation : </p> <span>{occupation}</span>
-          </>
-        )}
-        <Button
-          className="button-modifier"
-          variant="contained"
-          onClick={navigateToEditProfil}
-          sx={{
-            backgroundColor: "#6b041f",
-            "&:hover": { backgroundColor: "#921738" },
-          }}
-        >
-          Modifier
-        </Button>
+      <div>
+        <div className="profilCardMobile">
+          <h3>
+            <u>Mon Profil :</u>
+          </h3>
+          <p>
+            <u>Prénom : </u>
+            {firstname}
+          </p>
+          <p>
+            <u>Nom :</u> {lastname}
+          </p>
+          <p>
+            <u>Email :</u>
+          </p>{" "}
+          <p>{email}</p>
+          {age && (
+            <p>
+              <u>Âge :</u> {age} ans
+            </p>
+          )}
+          {occupation && (
+            <>
+              <p>
+                <u>Occupation(s) :</u>
+              </p>{" "}
+              <span>{occupation}</span>
+            </>
+          )}
+          <Button
+            className="button-modifier"
+            variant="contained"
+            onClick={navigateToEditProfil}
+            sx={{
+              backgroundColor: "#6b041f",
+              "&:hover": { backgroundColor: "#921738" },
+            }}
+          >
+            Modifier
+          </Button>
+        </div>
+        <div className="profilCard">
+          <h3>
+            <u>Mon Profil:</u>
+          </h3>
+          <p>
+            <u>Prénom:</u> {firstname}
+          </p>
+          <p>
+            <u>Nom:</u> {lastname}
+          </p>
+          <p>
+            <u>Email:</u> {email}
+          </p>
+          {age && (
+            <p>
+              {" "}
+              <u>Âge:</u> {age} ans
+            </p>
+          )}
+          {occupation && (
+            <p>
+              <u> Occupation(s) :</u> {occupation}
+            </p>
+          )}
+          <Button
+            className="button-modifier"
+            variant="contained"
+            onClick={navigateToEditProfil}
+            sx={{
+              backgroundColor: "#6b041f",
+              "&:hover": { backgroundColor: "#921738" },
+            }}
+          >
+            Modifier
+          </Button>
+        </div>
       </div>
     );
   };
@@ -86,14 +141,12 @@ function Profil() {
     <>
       <NavBar />
       <NavBarMobile />
-      <div className="my-profile">
-        <div className="profil-info">
-          {Object.keys(userInfo).length > 0 ? (
-            renderUserInfos()
-          ) : (
-            <p>Chargement des informations...</p>
-          )}
-        </div>
+      <div className="profil-info">
+        {Object.keys(userInfo).length > 0 ? (
+          renderUserInfos()
+        ) : (
+          <p>Chargement des informations...</p>
+        )}
       </div>
     </>
   );

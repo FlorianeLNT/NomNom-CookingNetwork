@@ -304,7 +304,6 @@ function PostedCard() {
                 </Button>
                 {error && <Alert severity="error">{error}</Alert>}
                 <div className="recette">
-                  <p>Voir la recette</p>
                   <ExpandMore
                     sx={{ color: "black" }}
                     expand={expanded}
@@ -312,6 +311,8 @@ function PostedCard() {
                     aria-expanded={expanded}
                     aria-label="show more"
                   >
+                    {" "}
+                    <p>Voir la recette</p>
                     <ExpandMoreIcon />
                   </ExpandMore>
                 </div>
@@ -338,7 +339,6 @@ function PostedCard() {
               <div>
                 <CardActions>
                   <div className="commentaires">
-                    <p>{item.comments.length} commentaire(s)</p>
                     <ExpandMore
                       sx={{ color: "black" }}
                       expand={expandedComment}
@@ -346,6 +346,7 @@ function PostedCard() {
                       aria-expanded={expandedComment}
                       aria-label="show more"
                     >
+                      <p>{item.comments.length} commentaire(s)</p>
                       <ExpandMoreIcon />
                     </ExpandMore>
                   </div>

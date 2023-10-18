@@ -10,9 +10,12 @@
   height: fit-content !important;
 }
 .css-1160xiw-MuiPaper-root-MuiDrawer-paper {
-  height: fit-content!important;
+  height: fit-content !important;
 }
-.css-1x5y54z-MuiPaper-root-MuiAppBar-root {
-  display: flex;
-  flex-direction: row-reverse;
+
+@media (max-width: 599px) {
+  .css-1x5y54z-MuiPaper-root-MuiAppBar-root {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+  }
 }

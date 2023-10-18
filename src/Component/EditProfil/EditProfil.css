@@ -23,43 +23,49 @@
   .MuiOutlinedInput-notchedOutline {
   border-color: #6b041f !important;
 }
-
-@media (max-width: 769px){
-  .inputCard {
-   height: 80%!important;
-   border: none;
-   }
-   .css-1koenj9-MuiButtonBase-root-MuiButton-root {
-    margin-top: 2vh!important;
-   }
-   .css-1fr0jp-MuiButtonBase-root-MuiButton-root{
-    margin-top: 2vh!important;
-   }
- .profilCard {  height: 65vh;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   padding: 3vh;
-   border: 6px solid #f4cb9e;
-   width: 60vw;
-   font-family: "Roboto", "Helvetica", "Arial", sans-serif;}
- }
- .profilCard p {
-  padding: 1.5vh!important;
- }
-
- @media (max-width: 1100px){
-  .inputCard {
-   height: 80%!important;
-   border: none;
-   }
-   .inputEdit{
-    
-   }
-   .css-1koenj9-MuiButtonBase-root-MuiButton-root {
-    margin-top: 5vh!important;
-   }
-   .css-1fr0jp-MuiButtonBase-root-MuiButton-root{
-    margin-top: 2vh!important;
-   }
+@media (max-width: 599px) {
+  .bouton-modif {
+    display: flex;
+    flex-direction: column;
   }
+}
+@media (max-width: 769px) {
+  .inputCard {
+    height: 80% !important;
+    border: none;
+  }
+  .css-1koenj9-MuiButtonBase-root-MuiButton-root {
+    margin-top: 2vh !important;
+  }
+  .css-1fr0jp-MuiButtonBase-root-MuiButton-root {
+    margin-top: 2vh !important;
+  }
+  .profilCard {
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3vh;
+    border: 6px solid #f4cb9e;
+    width: 60vw;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  }
+}
+.profilCard p {
+  padding: 1.5vh !important;
+}
+
+@media (max-width: 1100px) {
+  .inputCard {
+    height: 80% !important;
+    border: none;
+  }
+  .inputEdit {
+  }
+  .css-1koenj9-MuiButtonBase-root-MuiButton-root {
+    margin-top: 5vh !important;
+  }
+  .css-1fr0jp-MuiButtonBase-root-MuiButton-root {
+    margin-top: 2vh !important;
+  }
+}

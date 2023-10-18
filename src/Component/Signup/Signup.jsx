@@ -84,7 +84,7 @@ function SignUp() {
       setShowAlert(true);
       setTimeout(() => {
         navigateToLogin();
-      }, 2000);
+      }, 1000);
     }
 
     if (data.message) {
@@ -195,7 +195,6 @@ function SignUp() {
                   sx={{
                     color: "#6b041f",
                     textDecoration: "none",
-                    color: "black",
                     "&:hover": { color: "#9d0930" },
                   }}
                 >

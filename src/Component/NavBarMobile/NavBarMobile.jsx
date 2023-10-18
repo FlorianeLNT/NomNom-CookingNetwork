@@ -11,7 +11,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { useNavigate } from "react-router-dom";
 
-export default function MobileAppBar() {
+function NavBarMobile() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -50,13 +50,13 @@ export default function MobileAppBar() {
         {isAuthenticated ? (
           <>
             <ListItem button onClick={navigateToProfil}>
-              <ListItemText>Mon Profil</ListItemText>
+              <ListItemText>Profil</ListItemText>
             </ListItem>
             <ListItem button onClick={navigateToCard}>
               <ListItemText>Publier</ListItemText>
             </ListItem>
             <ListItem button onClick={handleLogout}>
-              <ListItemText>Se déconnecter</ListItemText>
+              <ListItemText>Déconnecter</ListItemText>
             </ListItem>
           </>
         ) : (
@@ -91,7 +91,7 @@ export default function MobileAppBar() {
             </IconButton>
             <Drawer
               variant="temporary"
-              anchor="left"
+              anchor="top"
               open={mobileOpen}
               onClose={handleDrawerToggle}
             >
@@ -103,3 +103,4 @@ export default function MobileAppBar() {
     </div>
   );
 }
+export default NavBarMobile;

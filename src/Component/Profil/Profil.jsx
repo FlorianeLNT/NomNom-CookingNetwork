@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import NavBarMobile from "../NavBarMobile/NavBarMobile";
 function Profil() {
   const [userInfo, setUserInfo] = useState({});
   const navigate = useNavigate();
@@ -82,6 +82,7 @@ function Profil() {
   return (
     <>
       <NavBar />
+      <NavBarMobile />
       <div className="my-profile">
         <div className="profil-info">
           {Object.keys(userInfo).length > 0 ? (

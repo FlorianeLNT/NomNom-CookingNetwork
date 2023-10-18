@@ -1,4 +1,5 @@
 .renderCards {
+  font-size: 1.6rem!important;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,9 +7,18 @@
   flex-direction: column;
 }
 
+.renderCards h5{
+  font-size: 1.7rem!important;
+}
+  .renderCards p {
+    font-size: 1.3rem!important;
+ 
+}
+
 .Comment {
   display: flex;
   flex-direction: column;
+  
 }
 
 .css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop {
@@ -32,7 +42,7 @@
 
 .css-n4qzfg-MuiPaper-root-MuiCard-root {
   color: green;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .recette {
@@ -68,4 +78,42 @@
   padding-left: 2vh;
   padding-bottom: 2vh;
   padding-right: 2vh;
+}
+
+
+@media (max-width: 769px) {
+  .css-n4qzfg-MuiPaper-root-MuiCard-root {
+    width: 80vw!important;
+    font-size: 0.8rem!important;
+  }
+  h5{
+    font-size: 1rem!important;
+  }
+  .css-kj99k-MuiTypography-root{
+    font-size: 1rem!important;
+  }
+  .commentaires{
+    font-size: 1rem!important;
+  }
+  .renderCards p {
+    font-size: 0.8rem!important;
+  }
+}
+@media (max-width: 599px) {
+  .css-n4qzfg-MuiPaper-root-MuiCard-root {
+    width: 90vw!important;
+    font-size: 0.8rem!important;
+  }
+  h5{
+    font-size: 1rem!important;
+  }
+  .css-kj99k-MuiTypography-root{
+    font-size: 1rem!important;
+  }
+  .commentaires{
+    font-size: 1rem!important;
+  }
+  .renderCards p {
+    font-size: 0.8rem!important;
+  }
 }

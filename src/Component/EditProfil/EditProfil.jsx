@@ -8,7 +8,7 @@ import NavBar from "../NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
+import NavBarMobile from "../NavBarMobile/NavBarMobile";
 function EditProfil() {
   const location = useLocation();
   const { userInfo } = location.state;
@@ -82,6 +82,7 @@ function EditProfil() {
   return (
     <div>
       <NavBar />
+      <NavBarMobile />
       <Box
         sx={{
           "& .MuiTextField-root": { m: 1, width: "25ch" },

@@ -14,6 +14,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import "./CreateCard.css";
+import NavBarMobile from "../NavBarMobile/NavBarMobile";
 
 const steps = [
   // {
@@ -175,6 +176,7 @@ function CreateCard(props) {
   return (
     <div>
       <NavBar />
+      <NavBarMobile />
       <Box
         className="createCardDiv"
         sx={{

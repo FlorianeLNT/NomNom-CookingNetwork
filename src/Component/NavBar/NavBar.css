@@ -2,3 +2,13 @@ body {
   margin: 0px;
   background-color: rgb(181, 181, 181);
 }
+@media (max-width: 769px) {
+  .css-n4qzfg-MuiPaper-root-MuiCard-root {
+    width: 80vw!important;
+    font-size: 0.8rem!important;
+  }
+  .css-bs5b0g-MuiButtonBase-root-MuiMenuItem-root {
+    font-size: 1.1rem!important;
+  }
+ 
+}

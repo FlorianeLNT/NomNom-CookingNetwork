@@ -67,6 +67,7 @@ body {
 
   .NavBarMobile {
     display: block;
+    font-size: 1rem!important;
   }
 }
 /*fix

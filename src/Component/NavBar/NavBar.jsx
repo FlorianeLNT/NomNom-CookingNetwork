@@ -16,7 +16,7 @@ export default function MenuAppBar() {
     navigate("/login");
   };
   const navigateToHome = () => {
-    navigate("/");
+    window.location.href = "/";
   };
   const navigateToProfil = () => {
     navigate("/profil");

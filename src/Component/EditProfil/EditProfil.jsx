@@ -146,11 +146,6 @@ function EditProfil() {
               onChange={(e) => setHobby(e.target.value)}
             />
             <div className="bouton-modif">
-              {showAlert && (
-                <Alert severity="success">
-                  Votre profil a été mis à jour !
-                </Alert>
-              )}{" "}
               <Button
                 className="button-save"
                 variant="contained"
@@ -174,6 +169,11 @@ function EditProfil() {
               >
                 Annuler
               </Button>
+              {showAlert && (
+                <Alert severity="success">
+                  Votre profil a été mis à jour !
+                </Alert>
+              )}{" "}
             </div>
           </div>
         </div>

@@ -22,6 +22,7 @@ import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
 import { Link } from "react-router-dom";
 import BasicPagination from "../Pagination/Pagination";
+import Alert from "@mui/material/Alert";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -57,10 +58,13 @@ function PostedCard() {
   const [open, setOpen] = React.useState(false);
   const [userId, setUserId] = useState("");
   const [page, setPage] = useState(0);
+  const [error, setError] = useState(null);
   const [maxPage, setMaxPage] = useState(0);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
+  const [expandedCards, setExpandedCards] = useState([]);
+  const [expandedCommentCards, setExpandedCommentCards] = useState([]);
 
   const navigateToUserProfile = (userId) => {
     navigate(`/user/${userId}`);
@@ -87,11 +91,21 @@ function PostedCard() {
     navigate(`/user/${userId}`);
   };
 
-  const handleExpandClick = async () => {
-    setExpanded(!expanded);
+  const handleExpandClick = async (postId) => {
+    if (expandedCards.includes(postId)) {
+      setExpandedCards(expandedCards.filter((id) => id !== postId));
+    } else {
+      setExpandedCards([postId]);
+    }
   };
-  const handleExpandClickComment = async () => {
-    setExpandedComment(!expandedComment);
+  const handleExpandClickComment = async (postId) => {
+    if (expandedCommentCards.includes(postId)) {
+      setExpandedCommentCards(
+        expandedCommentCards.filter((id) => id !== postId)
+      );
+    } else {
+      setExpandedCommentCards([postId]);
+    }
   };
 
   const renderTitle = (item) => {
@@ -166,7 +180,7 @@ function PostedCard() {
       }
       api();
     } catch (error) {
-      console.error("Erreur lors de la soumission du commentaire : " + error);
+      setError("Vous devez être connecté pour faire ceci");
     }
   };
 
@@ -288,12 +302,13 @@ function PostedCard() {
                     </Box>
                   </Modal>
                 </Button>
+                {error && <Alert severity="error">{error}</Alert>}
                 <div className="recette">
                   <p>Voir la recette</p>
                   <ExpandMore
                     sx={{ color: "black" }}
                     expand={expanded}
-                    onClick={handleExpandClick}
+                    onClick={() => handleExpandClick(item._id)}
                     aria-expanded={expanded}
                     aria-label="show more"
                   >
@@ -301,7 +316,11 @@ function PostedCard() {
                   </ExpandMore>
                 </div>
               </CardActions>
-              <Collapse in={expanded} timeout="auto" unmountOnExit>
+              <Collapse
+                in={expandedCards.includes(item._id)}
+                timeout="auto"
+                unmountOnExit
+              >
                 <CardContent>
                   <Typography
                     sx={{
@@ -323,7 +342,7 @@ function PostedCard() {
                     <ExpandMore
                       sx={{ color: "black" }}
                       expand={expandedComment}
-                      onClick={handleExpandClickComment}
+                      onClick={() => handleExpandClickComment(item._id)}
                       aria-expanded={expandedComment}
                       aria-label="show more"
                     >
@@ -331,7 +350,11 @@ function PostedCard() {
                     </ExpandMore>
                   </div>
                 </CardActions>
-                <Collapse in={expandedComment} timeout="auto" unmountOnExit>
+                <Collapse
+                  in={expandedCommentCards.includes(item._id)}
+                  timeout="auto"
+                  unmountOnExit
+                >
                   <div className="comments">{renderComments(item)}</div>
                 </Collapse>
               </div>

@@ -20,9 +20,7 @@ function Profil() {
     navigate("/profil");
   };
 
-  const userToken = localStorage.getItem("token");
-
-  if (!userToken) {
+  if (!localStorage.getItem("token")) {
     navigateToProfil();
     return;
   }
@@ -32,7 +30,7 @@ function Profil() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `bearer ${userToken}`,
+        Authorization: "bearer " + localStorage.getItem("token"),
       },
     };
 

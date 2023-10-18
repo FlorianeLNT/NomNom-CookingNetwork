@@ -47,7 +47,6 @@ function CreateCard(props) {
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
   const [message, setMessage] = useState("");
-  const [token, setToken] = useState(localStorage.getItem("token"));
   const navigateToHome = () => {
     navigate("/");
   };
@@ -64,7 +63,7 @@ function CreateCard(props) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
+            Authorization: "bearer " + localStorage.getItem("token"),
           },
           body: JSON.stringify({
             // image: image,

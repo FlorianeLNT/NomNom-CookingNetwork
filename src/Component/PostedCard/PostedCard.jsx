@@ -49,7 +49,6 @@ function PostedCard() {
   const [expanded, setExpanded] = React.useState(false);
   const [expandedComment, setExpandedComment] = React.useState(false);
   const [apiData, setApiData] = React.useState([]);
-  const [token, setToken] = useState(localStorage.getItem("token"));
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [comment, setComment] = useState("");
   const [posts, setPosts] = useState("");
@@ -71,7 +70,7 @@ function PostedCard() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "bearer " + token,
+        Authorization: "bearer " + localStorage.getItem("token"),
       },
     };
     const response = await fetch(
@@ -150,7 +149,7 @@ function PostedCard() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "bearer " + token,
+            Authorization: "bearer " + localStorage.getItem("token"),
           },
           body: JSON.stringify({
             postId: postId,
@@ -175,7 +174,7 @@ function PostedCard() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: "bearer " + token,
+            Authorization: "bearer " + localStorage.getItem("token"),
           },
           body: JSON.stringify({
             postId: postIdToComment,

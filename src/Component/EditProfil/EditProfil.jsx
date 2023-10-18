@@ -25,13 +25,11 @@ function EditProfil() {
   };
 
   async function handleEdit() {
-    const token = localStorage.getItem("token");
-
     const options = {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "bearer " + token,
+        Authorization: "bearer " + localStorage.getItem("token"),
       },
       body: JSON.stringify({
         firstname: firstName,
@@ -53,13 +51,11 @@ function EditProfil() {
   }
 
   async function getUserData() {
-    const token = localStorage.getItem("token");
-
     const options = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "bearer " + token,
+        Authorization: "bearer " + localStorage.getItem("token"),
       },
     };
 

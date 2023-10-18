@@ -21,9 +21,7 @@ function UserProfil() {
     navigate("/profil");
   };
 
-  const userToken = localStorage.getItem("token");
-
-  if (!userToken) {
+  if (!localStorage.getItem("token")) {
     navigateToProfil();
     return;
   }
@@ -33,7 +31,7 @@ function UserProfil() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `bearer ${userToken}`,
+        Authorization: "bearer " + localStorage.getItem("token"),
       },
     };
 
@@ -55,7 +53,7 @@ function UserProfil() {
   }, []);
 
   const renderUserInfos = () => {
-    const { firstname, lastname, email, age, occupation } = userInfo;
+    const { firstname, lastname, age, occupation } = userInfo;
 
     return (
       <div className="profilCard">
@@ -72,13 +70,7 @@ function UserProfil() {
     <>
       <NavBar />
       <div className="my-profile">
-        <div className="profil-info">
-          {Object.keys(userInfo).length > 0 ? (
-            renderUserInfos()
-          ) : (
-            <p>Chargement des informations...</p>
-          )}
-        </div>
+        <div className="profil-info">{renderUserInfos()}</div>
       </div>
     </>
   );

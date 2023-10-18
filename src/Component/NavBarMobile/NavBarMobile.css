@@ -9,5 +9,10 @@
 .css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
   height: fit-content !important;
 }
-
-
+.css-1160xiw-MuiPaper-root-MuiDrawer-paper {
+  height: fit-content!important;
+}
+.css-1x5y54z-MuiPaper-root-MuiAppBar-root {
+  display: flex;
+  flex-direction: row-reverse;
+}

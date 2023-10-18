@@ -4,6 +4,9 @@
   padding: 5vh;
   height: 40vh;
 }
+.css-1di5t78-MuiPaper-root{
+  background-color: rgba(243, 239, 239, 0.888) !important;
+}
 
 .css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
   color: #6b041f !important;
@@ -55,4 +58,24 @@
   height: 80%!important;
   border: none;
   }
+  .parent {
+    width: 75vw;}
+
+  .MuiTextField-root{
+    width: 70vw;
+   
+  }
+  .css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root {
+height: 60vh;
+  
+}
+.css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
+  padding-top: 7vh;
+  width: 80vw;
+  /* height: 50vh; */
+}
+
+.css-14yr603-MuiStepContent-root{
+  margin-top: 30vh;
+}
 }

@@ -91,7 +91,7 @@ function NavBarMobile() {
             </IconButton>
             <Drawer
               variant="temporary"
-              anchor="top"
+              anchor="right"
               open={mobileOpen}
               onClose={handleDrawerToggle}
             >

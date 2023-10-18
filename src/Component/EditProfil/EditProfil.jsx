@@ -12,7 +12,6 @@ import { useLocation } from "react-router-dom";
 function EditProfil() {
   const location = useLocation();
   const { userInfo } = location.state;
-
   const [firstName, setFirstName] = useState(userInfo.firstname);
   const [lastName, setLastName] = useState(userInfo.lastname);
   const [email, setEmail] = useState(userInfo.email);
@@ -54,6 +53,8 @@ function EditProfil() {
   }
 
   async function getUserData() {
+    const token = localStorage.getItem("token");
+
     const options = {
       method: "GET",
       headers: {
@@ -69,7 +70,6 @@ function EditProfil() {
 
     if (response.ok) {
       const data = await response.json();
-      setUserInfo(data);
     } else {
       navigateToLogin();
     }
@@ -99,7 +99,6 @@ function EditProfil() {
               InputLabelProps={{
                 shrink: true,
               }}
-              defaultValue={userInfo.firstname}
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
             />

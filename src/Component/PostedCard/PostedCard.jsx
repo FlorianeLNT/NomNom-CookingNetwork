@@ -22,6 +22,7 @@ import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
 import { Link } from "react-router-dom";
 import BasicPagination from "../Pagination/Pagination";
+import Alert from "@mui/material/Alert";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -57,6 +58,7 @@ function PostedCard() {
   const [open, setOpen] = React.useState(false);
   const [userId, setUserId] = useState("");
   const [page, setPage] = useState(0);
+  const [error, setError] = useState(null);
   const [maxPage, setMaxPage] = useState(0);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -166,7 +168,7 @@ function PostedCard() {
       }
       api();
     } catch (error) {
-      console.error("Erreur lors de la soumission du commentaire : " + error);
+      setError("Vous devez être connecté pour faire ceci");
     }
   };
 
@@ -288,6 +290,7 @@ function PostedCard() {
                     </Box>
                   </Modal>
                 </Button>
+                {error && <Alert severity="error">{error}</Alert>}
                 <div className="recette">
                   <p>Voir la recette</p>
                   <ExpandMore

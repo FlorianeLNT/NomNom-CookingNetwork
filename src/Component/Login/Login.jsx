@@ -13,9 +13,6 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import Alert from "@mui/material/Alert";
-import IconButton from "@mui/material/IconButton";
-import Collapse from "@mui/material/Collapse";
-import CloseIcon from "@mui/icons-material/Close";
 
 function Copyright(props) {
   return (
@@ -156,7 +153,7 @@ function Login() {
             </Button>
             {showAlert && (
               <Alert severity="success">
-                Vous êtes connecté, redirection vers la page d'acceuil !
+                Vous êtes connecté, redirection vers l'acceuil
               </Alert>
             )}
             {error && <Alert severity="error">{error}</Alert>}

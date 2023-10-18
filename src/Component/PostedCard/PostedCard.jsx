@@ -206,7 +206,7 @@ function PostedCard() {
       }
       api();
     } catch (error) {
-      console.error("Erreur lors de la soumission du commentaire : " + error);
+      setError("Vous devez être connecté pour faire ceci");
     }
   };
 
